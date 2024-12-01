@@ -1,0 +1,78 @@
+{
+  "@@locale": "de",
+  "ok": "OK",
+  "danger": "Achtung",
+  "error": "Fehler",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "login": "Anmelden",
+  "sign_up": "Registrieren",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "save": "Speichern",
+  "edit": "Bearbeiten",
+
+  "gender": "Geschlecht",
+  "gender_male": "Herr",
+  "gender_female": "Frau",
+
+  "company": "Firmenname",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "tel1": "Telefon 1",
+  "tel2": "Telefon 2",
+  "homepage": "Webseite",
+
+  "phone": "Telefon",
+  "street": "Straße & Hausnummer",
+  "city": "Stadt",
+  "state": "Bundesland",
+  "zip": "PLZ",
+  "country": "Land",
+  "select_country": "Land auswählen",
+
+  "currency": "Währung",
+  "tax": "Steuer",
+  "tax_abbreviated": "MwSt.",
+
+  "error_on_load_countries": "Beim Laden der Länder ist ein Fehler aufgetreten.",
+
+  "auth_failure_onDefaultFailure": "Ein unerwarteter Fehler ist aufgetreten.\nKontaktiere den Kundendienst.",
+  "auth_failure_wrongEmailOrPasswordFailure": "Die eingegebene E-Mail-Adresse oder das Passwort ist nicht korrekt.\nBitte überprüfe deine Eingaben und versuchen es erneut.",
+  "auth_failure_emailNotConfirmedFailure": "Verifiziere bitte deine E-Mail, indem du auf den Link in deiner E-Mail klickst, den du von uns erhalten hast",
+
+  "my_dialog_notImplementedYet": "Diese Funktion ist noch nicht implementiert",
+  "my_dialog_confirmDeleteContent": "Bist du sicher, dass du es unwiederruflich löschen willst?",
+
+  "sign_in_welcome": "Willkommen bei",
+  "sign_in_forgotPassword": "Passwort vergessen?",
+  "sign_in_noAccountYet": "Noch keinen Account?",
+  "sign_in_signUpNow": "Noch keinen Account?",
+
+  "sign_up_congratulations": "Glückwunsch",
+  "sign_up_checkEmail": "Herzlichen Glückwunsch zur erfolgreichen Registrierung in unserer App!\n\nBitte überprüfe dein E-Mail-Postfach und klicke auf den Bestätigungslink, den wir dir geschickt haben.\nEs kann vorkommen, dass die E-Mail im Spam-Ordner landet, daher schaue bitte auch dort nach.",
+  "sign_up_content": "Erstelle jetzt dein Konto und entdecke alle Funktionen von 4Detailer.\nKonzentriere dich auf dein Kerngeschäft, vermeide Chaos und bringe deine Aufbereitung auf das nächste Level.",
+  "sign_up_confirmPassword": "Passwort bestätigen",
+  "sign_up_alreadyHaveAccount": "Schon registriert?",
+  "sign_up_backToSignIn": "Anmelden",
+  "sign_up_passwordsDontMatch": "Die eingegebenen Passwörter stimmen nicht überein. Bitte überprüfe deine Eingaben und versuche es erneut.",
+
+  "user_data_needInformation": "braucht nur noch ein paar wenige Daten von dir und du kannst loslegen!",
+  "user_data_mandatoryFields": "Folgende Felder sind Pflichtfelder und müssen ausgefüllt werden!",
+  "user_data_companyTitle": "Unternehmensdaten:",
+  "user_data_taxDataTitle": "Steuerdaten für Rechnungen:",
+  "user_data_isSmallBusiness": "Kleinunternehmerregelung?",
+  "user_data_loadingText": "Deine Daten werden erstellt...",
+
+  "defaultCashRegisterName": "Kasse",
+  "defaultCashRegisterShortName": "Bar",
+  "defaultPaymentMethodName": "Barzahlung",
+  "defaultPaymentMethodShortName": "Bar",
+
+  "app_drawer_homepage": "Startseite",
+
+  "conditioner_detail_showProfile": "Profil anzeigen",
+  "conditioner_detail_editProfileImage": "Profilbild bearbeiten",
+  "conditioner_detail_deleteProfileImage": "Profilbild löschen",
+  "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?"
+}
