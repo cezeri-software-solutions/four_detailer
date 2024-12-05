@@ -8,7 +8,6 @@ part of 'bank_details.dart';
 
 BankDetails _$BankDetailsFromJson(Map<String, dynamic> json) => BankDetails(
       id: json['id'] as String,
-      settingsId: json['settings_id'] as String,
       bankName: json['bank_name'] as String,
       accountHolder: json['account_holder'] as String,
       iban: json['iban'] as String,
@@ -19,7 +18,6 @@ BankDetails _$BankDetailsFromJson(Map<String, dynamic> json) => BankDetails(
 Map<String, dynamic> _$BankDetailsToJson(BankDetails instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'settings_id': instance.settingsId,
       'bank_name': instance.bankName,
       'account_holder': instance.accountHolder,
       'iban': instance.iban,

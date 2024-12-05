@@ -12,3 +12,5 @@ class UpdateSettingsEvent extends SettingsEvent {
 
   UpdateSettingsEvent({required this.settings});
 }
+
+class SaveMainSettingsEvent extends SettingsEvent {}

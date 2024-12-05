@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '/core/core.dart';
 import '../../../../2_application/conditioner/conditioner_bloc.dart';
 import '../../../../3_domain/models/models.dart';
+import '../../../../constants.dart';
 import '../../../../routes/router.gr.dart';
 
 class ConditionerDetailImageButtons extends StatelessWidget {
@@ -22,22 +24,18 @@ class ConditionerDetailImageButtons extends StatelessWidget {
           TextButton.icon(
             onPressed: () => context.router.push(MyPhotoRoute(urls: [conditioner.imageUrl])),
             icon: const Icon(Icons.open_in_full_rounded),
-            label:  Text(context.l10n.conditioner_detail_showProfile),
+            label: Text(context.l10n.conditioner_detail_showProfile),
           ),
         Row(
           children: [
-            IconButton(
-                onPressed: () => bloc.add(AddEditImageEvent(context: context, source: ImageSource.camera)),
-                icon: Icon(
-                  Icons.camera_alt_outlined,
-                  color: context.colorScheme.primary,
-                )),
+            if (kIsWeb) Gaps.w4,
+            if (!kIsWeb)
+              IconButton(
+                  onPressed: () => bloc.add(AddEditImageEvent(context: context, source: ImageSource.camera)),
+                  icon: Icon(Icons.camera_alt_outlined, color: context.colorScheme.primary)),
             IconButton(
                 onPressed: () => bloc.add(AddEditImageEvent(context: context, source: ImageSource.gallery)),
-                icon: Icon(
-                  Icons.image_search,
-                  color: context.colorScheme.primary,
-                )),
+                icon: Icon(Icons.image_search, color: context.colorScheme.primary)),
             Text(
               context.l10n.conditioner_detail_editProfileImage,
               style: context.textTheme.bodyMedium!.copyWith(color: context.colorScheme.primary),
@@ -54,7 +52,7 @@ class ConditionerDetailImageButtons extends StatelessWidget {
               );
             },
             icon: const Icon(Icons.image_not_supported),
-            label:  Text(context.l10n.conditioner_detail_deleteProfileImage),
+            label: Text(context.l10n.conditioner_detail_deleteProfileImage),
             style: TextButton.styleFrom(
               iconColor: context.colorScheme.error,
               foregroundColor: context.colorScheme.error,

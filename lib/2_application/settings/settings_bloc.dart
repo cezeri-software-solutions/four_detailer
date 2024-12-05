@@ -22,6 +22,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<SetSettingsStateToInitialEvent>(_onSetSettingsStateToInitial);
     on<LoadSettingsEvent>(_onLoadSettings);
     on<UpdateSettingsEvent>(_onUpdateSettings);
+    on<SaveMainSettingsEvent>(_onSaveMainSettings);
   }
 
   void _onSetSettingsStateToInitial(SetSettingsStateToInitialEvent event, Emitter<SettingsState> emit) {
@@ -56,7 +57,26 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(state.copyWith(fosSettingsOnObserveOption: none()));
   }
 
-  void _onUpdateSettings(UpdateSettingsEvent event, Emitter<SettingsState> emit) async {
+  void _onUpdateSettings(UpdateSettingsEvent event, Emitter<SettingsState> emit) {
+    emit(state.copyWith(settings: event.settings));
+  }
+
+  void _onSaveMainSettings(SaveMainSettingsEvent event, Emitter<SettingsState> emit) async {
     emit(state.copyWith(isLoadingSettingsOnUpdate: true));
+
+    final fos = await _settingsRepository.updateSettings(state.settings!);
+    if (fos.isLeft()) {
+      emit(state.copyWith(failure: fos.getLeft()));
+      return;
+    }
+
+    final settings = fos.getRight();
+
+    emit(state.copyWith(
+      isLoadingSettingsOnUpdate: false,
+      settings: settings,
+      fosSettingsOnUpdateOption: optionOf(fos),
+    ));
+    emit(state.copyWith(fosSettingsOnUpdateOption: none()));
   }
 }

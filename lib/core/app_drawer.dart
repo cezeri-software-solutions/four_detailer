@@ -77,7 +77,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     ListTile(
                       leading: const Icon(Icons.settings),
-                      title: Text(context.l10n.app_drawer_homepage),
+                      title: Text(context.l10n.app_drawer_settings),
                       onTap: () => navigateToRoute(const SettingsRoute()),
                     ),
                     // ListTile(
@@ -254,7 +254,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app, color: context.colorScheme.error),
-              title: const Text('Abmelden'),
+              title: Text(context.l10n.app_drawer_signOut),
               onTap: () async {
                 final repo = GetIt.I<AuthRepository>();
                 await repo.signOut();

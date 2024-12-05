@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/core/core.dart';
 import '../../constants.dart';
 
 void showErrorSnackbar({required BuildContext context, required String text}) {
@@ -14,8 +15,8 @@ void showErrorSnackbar({required BuildContext context, required String text}) {
           Container(
             width: 24,
             height: 24,
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.error, shape: BoxShape.circle),
-            child: Center(child: Icon(Icons.priority_high_outlined, color: Theme.of(context).colorScheme.surface, size: 14)),
+            decoration: BoxDecoration(color: context.colorScheme.error, shape: BoxShape.circle),
+            child: Center(child: Icon(Icons.priority_high_outlined, color: context.colorScheme.surface, size: 14)),
           ),
           Gaps.w8,
           Expanded(child: Text(text)),
