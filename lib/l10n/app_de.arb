@@ -47,7 +47,6 @@
   "sign_in_welcome": "Willkommen bei",
   "sign_in_forgotPassword": "Passwort vergessen?",
   "sign_in_noAccountYet": "Noch keinen Account?",
-  "sign_in_signUpNow": "Noch keinen Account?",
 
   "sign_up_congratulations": "Glückwunsch",
   "sign_up_checkEmail": "Herzlichen Glückwunsch zur erfolgreichen Registrierung in unserer App!\n\nBitte überprüfe dein E-Mail-Postfach und klicke auf den Bestätigungslink, den wir dir geschickt haben.\nEs kann vorkommen, dass die E-Mail im Spam-Ordner landet, daher schaue bitte auch dort nach.",
@@ -70,9 +69,45 @@
   "defaultPaymentMethodShortName": "Bar",
 
   "app_drawer_homepage": "Startseite",
+  "app_drawer_settings": "Einstellungen",
+  "app_drawer_signOut": "Abmelden",
 
   "conditioner_detail_showProfile": "Profil anzeigen",
   "conditioner_detail_editProfileImage": "Profilbild bearbeiten",
   "conditioner_detail_deleteProfileImage": "Profilbild löschen",
-  "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?"
+  "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?",
+
+  "settings_title": "Einstellungen",
+  "settings_basic": "Grundeinstellungen",
+  "settings_smallBusiness": "Kleinunternehmer",
+  "settings_taxPercent": "Mehrwertsteuer (%)",
+  "settings_paymentDeadline": "Zahlungsfrist (Tage)",
+  
+  "settings_bank": "Bankdaten",
+  "settings_bankName": "Bank",
+  "settings_accountHolder": "Kontoinhaber",
+  "settings_iban": "IBAN",
+  "settings_bic": "BIC",
+  "settings_paypal": "PayPal E-Mail",
+
+  "settings_documentPrefixes": "Dokumentpräfixe",
+  "settings_prefixOffer": "Angebot",
+  "settings_prefixAppointment": "Auftrag",
+  "settings_prefixInvoice": "Rechnung",
+  "settings_prefixCredit": "Gutschrift",
+  "settings_prefixIncomingInvoice": "Eingangsrechnung",
+
+  "settings_documentTexts": "Dokumenttexte",
+  "settings_textOffer": "Angebotstext",
+  "settings_textAppointment": "Auftragstext",
+  "settings_textInvoice": "Rechnungstext",
+  "settings_textCredit": "Gutschrifttext",
+
+  "settings_numberCounters": "Nummernzähler",
+  "settings_counterNextOffer": "Nächste Angebotsnummer",
+  "settings_counterNextAppointment": "Nächste Auftragsnummer",
+  "settings_counterNextInvoice": "Nächste Rechnungsnummer",
+  "settings_counterNextIncomingInvoice": "Nächste Eingangsrechnungsnummer",
+  "settings_counterNextBranch": "Nächste Filialnummer",
+  "settings_counterNextCustomer": "Nächste Kundennummer"
 }

@@ -4,7 +4,9 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../2_application/settings/settings_bloc.dart';
 import '../../../3_domain/models/models.dart';
+import '../../../constants.dart';
 import '../../../core/core.dart';
+import 'widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   final SettingsBloc settingsBloc;
@@ -14,156 +16,89 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.breakpoint.smallerOrEqualTo(MOBILE);
-    final isTablet = context.breakpoint.smallerOrEqualTo(TABLET);
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) {
-        if (state.isLoadingSettingsOnOserve) {
-          return const Center(child: MyLoadingIndicator());
-        }
-        if (state.failure != null) {
-          return Center(child: Text(state.failure!.message ?? state.failure!.toString()));
-        }
-        if (state.settings == null) {
-          return const Center(child: MyLoadingIndicator());
-        }
+        if (state.isLoadingSettingsOnOserve) return const Center(child: MyLoadingIndicator());
+        if (state.failure != null) return Center(child: Text(state.failure!.message ?? state.failure!.toString()));
+        if (state.settings == null) return const Center(child: MyLoadingIndicator());
 
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ResponsiveRowColumn(
-              layout: isMobile ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
-              rowCrossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  child: _buildBasicSettings(context, state.settings!, isMobile),
-                ),
-                if (!isMobile) const ResponsiveRowColumnItem(child: SizedBox(width: 16)),
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  child: _buildDocumentSettings(context, state.settings!, isMobile),
-                ),
-              ],
-            ),
+        return RefreshIndicator.adaptive(
+          onRefresh: () async => settingsBloc.add(LoadSettingsEvent()),
+          child: ListView(
+            children: [
+              Visibility(
+                visible: state.isLoadingSettingsOnUpdate,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: const Center(child: LinearProgressIndicator()),
+              ),
+              SettingsContent(
+                settings: state.settings!,
+                availableCurrencies: state.availableCurrencies ?? [],
+                isMobile: isMobile,
+                settingsBloc: settingsBloc,
+              ),
+            ],
           ),
         );
       },
     );
   }
+}
 
-  Widget _buildBasicSettings(BuildContext context, MainSettings settings, bool isMobile) {
-    return Card(
+class SettingsContent extends StatelessWidget {
+  final MainSettings settings;
+  final List<Currency> availableCurrencies;
+  final bool isMobile;
+  final SettingsBloc settingsBloc;
+
+  const SettingsContent({
+    super.key,
+    required this.settings,
+    required this.availableCurrencies,
+    required this.isMobile,
+    required this.settingsBloc,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(isMobile ? 12 : 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Grundeinstellungen', style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            _buildSettingsField(
-              label: 'Kleinunternehmer',
-              child: Switch(
-                value: settings.isSmallBusiness,
-                onChanged: (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(isSmallBusiness: value),
-                  ));
-                },
-              ),
-            ),
-            _buildSettingsField(
-              label: 'Mehrwertsteuer (%)',
-              child: SizedBox(
-                width: 100,
-                child: TextFormField(
-                  initialValue: settings.tax.toString(),
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    final tax = double.tryParse(value);
-                    if (tax != null) {
-                      settingsBloc.add(UpdateSettingsEvent(
-                        settings: settings.copyWith(tax: tax),
-                      ));
-                    }
-                  },
-                ),
-              ),
-            ),
-            _buildSettingsField(
-              label: 'Zahlungsfrist (Tage)',
-              child: SizedBox(
-                width: 100,
-                child: TextFormField(
-                  initialValue: settings.paymentDeadline.toString(),
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    final days = int.tryParse(value);
-                    if (days != null) {
-                      settingsBloc.add(UpdateSettingsEvent(settings: settings.copyWith(paymentDeadline: days)));
-                    }
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDocumentSettings(BuildContext context, MainSettings settings, bool isMobile) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Dokumenteinstellungen', style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            ExpansionTile(
-              title: const Text('Dokumentpräfixe'),
+            ResponsiveRowColumn(
+              layout: isMobile ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
+              rowCrossAxisAlignment: CrossAxisAlignment.start,
+              rowMainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildPrefixField('Rechnung', settings.documentPraefixes.invoicePraefix, (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(
-                      documentPraefixes: settings.documentPraefixes.copyWith(invoicePraefix: value),
-                    ),
-                  ));
-                }),
-                _buildPrefixField('Angebot', settings.documentPraefixes.offerPraefix, (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(
-                      documentPraefixes: settings.documentPraefixes.copyWith(offerPraefix: value),
-                    ),
-                  ));
-                }),
-              ],
-            ),
-            ExpansionTile(
-              title: const Text('Bankdaten'),
-              children: [
-                _buildPrefixField('IBAN', settings.bankDetails.iban, (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(
-                      bankDetails: settings.bankDetails.copyWith(iban: value),
-                    ),
-                  ));
-                }),
-                _buildPrefixField('BIC', settings.bankDetails.bic, (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(
-                      bankDetails: settings.bankDetails.copyWith(bic: value),
-                    ),
-                  ));
-                }),
-                _buildPrefixField('Bank', settings.bankDetails.bankName, (value) {
-                  settingsBloc.add(UpdateSettingsEvent(
-                    settings: settings.copyWith(
-                      bankDetails: settings.bankDetails.copyWith(bankName: value),
-                    ),
-                  ));
-                }),
+                ResponsiveRowColumnItem(
+                  rowFlex: 1,
+                  child: Column(
+                    children: [
+                      BasicSettingsCard(settings: settings, currencies: availableCurrencies, isMobile: isMobile, settingsBloc: settingsBloc),
+                      Gaps.h24,
+                      BankSettingsCard(settings: settings, isMobile: isMobile, settingsBloc: settingsBloc),
+                      Gaps.h24,
+                    ],
+                  ),
+                ),
+                if (!isMobile) const ResponsiveRowColumnItem(child: Gaps.w24),
+                ResponsiveRowColumnItem(
+                  rowFlex: 1,
+                  child: Column(
+                    children: [
+                      DocumentPrefixesCard(settings: settings, isMobile: isMobile, settingsBloc: settingsBloc),
+                      Gaps.h24,
+                      NumberCountersCard(settings: settings, isMobile: isMobile, settingsBloc: settingsBloc),
+                      Gaps.h24,
+                      DocumentTextsCard(settings: settings, isMobile: isMobile, settingsBloc: settingsBloc),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
@@ -171,41 +106,55 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildSettingsField({required String label, required Widget child}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label),
-          child,
-        ],
-      ),
-    );
-  }
+class SettingsCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final bool isMobile;
+  final List<Widget> children;
 
-  Widget _buildPrefixField(String label, String value, Function(String) onChanged) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(label),
-          ),
-          Expanded(
-            flex: 3,
-            child: TextFormField(
-              initialValue: value,
-              onChanged: onChanged,
-              decoration: const InputDecoration(
-                isDense: true,
-                border: OutlineInputBorder(),
+  const SettingsCard({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.isMobile,
+    required this.children,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MyFormFieldContainer(
+      padding: EdgeInsets.zero,
+      borderColor: context.colorScheme.outlineVariant,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: context.colorScheme.primary.withOpacity(0.2),
+                border: Border(left: BorderSide(color: context.colorScheme.primary, width: 4)),
+              ),
+              child: Row(
+                children: [
+                  Icon(icon),
+                  const SizedBox(width: 12),
+                  Text(title, style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                ],
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(isMobile ? 12 : 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: children,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

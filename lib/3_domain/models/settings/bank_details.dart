@@ -6,8 +6,8 @@ part 'bank_details.g.dart';
 @JsonSerializable(explicitToJson: true)
 class BankDetails extends Equatable {
   final String id;
-  @JsonKey(name: 'settings_id')
-  final String settingsId;
+  // @JsonKey(name: 'settings_id')
+  // final String settingsId;
   @JsonKey(name: 'bank_name')
   final String bankName; // Name der Bank
   @JsonKey(name: 'account_holder')
@@ -19,7 +19,7 @@ class BankDetails extends Equatable {
 
   const BankDetails({
     required this.id,
-    required this.settingsId,
+    // required this.settingsId,
     required this.bankName,
     required this.accountHolder,
     required this.iban,
@@ -31,12 +31,12 @@ class BankDetails extends Equatable {
   Map<String, dynamic> toJson() => _$BankDetailsToJson(this);
 
   factory BankDetails.empty() {
-    return const BankDetails(id: '', settingsId: '', bankName: '', accountHolder: '', iban: '', bic: '', paypalEmail: '');
+    return const BankDetails(id: '', bankName: '', accountHolder: '', iban: '', bic: '', paypalEmail: '');
   }
 
   BankDetails copyWith({
     String? id,
-    String? settingsId,
+    // String? settingsId,
     String? bankName,
     String? accountHolder,
     String? iban,
@@ -45,7 +45,7 @@ class BankDetails extends Equatable {
   }) {
     return BankDetails(
       id: id ?? this.id,
-      settingsId: settingsId ?? this.settingsId,
+      // settingsId: settingsId ?? this.settingsId,
       bankName: bankName ?? this.bankName,
       accountHolder: accountHolder ?? this.accountHolder,
       iban: iban ?? this.iban,

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_detailer/1_presentation/drawer/settings/settings_page.dart';
 
+import '../../../2_application/auth/auth_bloc.dart';
 import '../../../2_application/settings/settings_bloc.dart';
 import '../../../core/core.dart';
 import '../../../injection.dart';
+import '../../../routes/router.gr.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
@@ -32,11 +34,41 @@ class _SettingsScreenState extends State<SettingsScreen> with AutomaticKeepAlive
     return BlocProvider.value(
       value: _settingsBloc,
       child: MultiBlocListener(
-        listeners: const [],
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthStateUnauthenticated) context.router.replaceAll([const SplashRoute()]);
+            },
+          ),
+          BlocListener<SettingsBloc, SettingsState>(
+            listenWhen: (p, c) => p.fosSettingsOnUpdateOption != c.fosSettingsOnUpdateOption,
+            listener: (context, state) {
+              state.fosSettingsOnUpdateOption.fold(
+                () => null,
+                (a) => a.fold(
+                  (failure) => showErrorSnackbar(context: context, text: failure.message ?? failure.toString()),
+                  (_) {
+                    showSuccessSnackBar(context: context, text: 'Einstellungen erfolgreich aktualisiert');
+                    context.router.popUntilRouteWithName(SettingsRoute.name);
+                  },
+                ),
+              );
+            },
+          ),
+        ],
         child: Scaffold(
           drawer: const AppDrawer(),
           appBar: AppBar(
-            actions: [IconButton(onPressed: () => _settingsBloc.add(LoadSettingsEvent()), icon: const Icon(Icons.refresh))],
+            title: Text(context.l10n.settings_title),
+            centerTitle: false,
+            actions: [
+              IconButton(onPressed: () => _settingsBloc.add(LoadSettingsEvent()), icon: const Icon(Icons.refresh)),
+              MySaveButton(
+                label: 'Speichern',
+                isLoading: _settingsBloc.state.isLoadingSettingsOnUpdate,
+                onPressed: () => _settingsBloc.add(SaveMainSettingsEvent()),
+              ),
+            ],
           ),
           body: SafeArea(child: SettingsPage(settingsBloc: _settingsBloc)),
         ),
