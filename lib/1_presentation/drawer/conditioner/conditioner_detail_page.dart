@@ -42,102 +42,34 @@ class _ConditionerDetailContent extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Column(
           children: [
-            MyFormFieldContainer(
-              padding: EdgeInsets.zero,
-              borderColor: context.colorScheme.outlineVariant,
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: isMobile ? 140 : 200,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-                          color: context.colorScheme.outlineVariant,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: isMobile ? 140 : 180, right: 20),
-                          child: Image.asset(
-                            context.brightness == Brightness.light
-                                ? 'assets/logo/logo_advertised_white.png'
-                                : 'assets/logo/logo_advertised_black.png',
-                            width: 250,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 42, bottom: 20, left: 20, right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  MyAnimatedExpansionContainer(
-                                    isExpanded: state.showImageEditing,
-                                    child: ConditionerDetailImageButtons(bloc: conditionerBloc, conditioner: state.conditioner!),
-                                  ),
-                                  Gaps.h12,
-                                  Text(
-                                    state.conditioner!.name,
-                                    style: context.textTheme.titleLarge,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Gaps.h4,
-                                  Text(
-                                    state.conditioner!.email,
-                                    style: context.textTheme.titleMedium,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Gaps.h24,
-                                  MyAddressView(address: state.conditioner!.address),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                IconButton(
-                                  onPressed: () => conditionerBloc.add(IsPaymentEditModeChangedEvent()),
-                                  icon: Icon(state.isInPaymentEditMode ? Icons.payments_outlined : Icons.payments),
-                                ),
-                                IconButton(
-                                  onPressed: () => conditionerBloc.add(IsEditModeChangedEvent()),
-                                  icon: Icon(state.isInEditMode ? Icons.edit_off : Icons.edit),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    top: isMobile ? 70 : 110,
-                    left: 20,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyAvatar(
-                          name: state.conditioner!.name,
-                          imageUrl: state.conditioner?.imageUrl,
-                          radius: isMobile ? 50 : 65,
-                          fontSize: isMobile ? 32 : 42,
-                          borderColor: context.colorScheme.outlineVariant,
-                          onTap: () => conditionerBloc.add(ShowImageEditingChangedEvent()),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+            MyBusinessCard(
+              showImageEditing: state.showImageEditing,
+              imageButtons: MyImageButtons(
+                imageUrl: state.conditioner?.imageUrl,
+                onPickImage: (source) => conditionerBloc.add(ConditionerAddEditImageEvent(context: context, source: source)),
+                onRemoveImage: () => conditionerBloc.add(ConditionerRemoveImageEvent(context: context)),
               ),
+              avatar: MyAvatar(
+                name: state.conditioner!.name,
+                imageUrl: state.conditioner?.imageUrl,
+                radius: isMobile ? 50 : 65,
+                fontSize: isMobile ? 32 : 42,
+                borderColor: context.colorScheme.outlineVariant,
+                onTap: () => conditionerBloc.add(ShowImageEditingChangedEvent()),
+              ),
+              address: state.conditioner!.address,
+              name: state.conditioner!.name,
+              email: state.conditioner!.email,
+              iconButtons: [
+                IconButton(
+                  onPressed: () => conditionerBloc.add(IsPaymentEditModeChangedEvent()),
+                  icon: Icon(state.isInPaymentEditMode ? Icons.payments_outlined : Icons.payments),
+                ),
+                IconButton(
+                  onPressed: () => conditionerBloc.add(IsEditModeChangedEvent()),
+                  icon: Icon(state.isInEditMode ? Icons.edit_off : Icons.edit),
+                ),
+              ],
             ),
             Gaps.h32,
             MyAnimatedExpansionContainer(

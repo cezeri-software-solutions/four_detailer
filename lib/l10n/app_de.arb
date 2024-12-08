@@ -37,6 +37,17 @@
 
   "error_on_load_countries": "Beim Laden der Länder ist ein Fehler aufgetreten.",
 
+  "my_image_source_camera": "Kamera",
+  "my_image_source_gallery": "Galerie",
+  "my_image_source_file": "Datei",
+  "my_image_source_display": "Anzeigen",
+  "my_image_source_edit": "Bearbeiten",
+  "my_image_source_delete": "Löschen",
+
+  "enum_serviceType_stationary": "Stationär",
+  "enum_serviceType_mobile": "Mobil",
+  "enum_serviceType_both": "Stationär & Mobile",
+
   "auth_failure_onDefaultFailure": "Ein unerwarteter Fehler ist aufgetreten.\nKontaktiere den Kundendienst.",
   "auth_failure_wrongEmailOrPasswordFailure": "Die eingegebene E-Mail-Adresse oder das Passwort ist nicht korrekt.\nBitte überprüfe deine Eingaben und versuchen es erneut.",
   "auth_failure_emailNotConfirmedFailure": "Verifiziere bitte deine E-Mail, indem du auf den Link in deiner E-Mail klickst, den du von uns erhalten hast",
@@ -69,6 +80,7 @@
   "defaultPaymentMethodShortName": "Bar",
 
   "app_drawer_homepage": "Startseite",
+  "app_drawer_branches": "Filialen",
   "app_drawer_settings": "Einstellungen",
   "app_drawer_signOut": "Abmelden",
 
@@ -76,6 +88,19 @@
   "conditioner_detail_editProfileImage": "Profilbild bearbeiten",
   "conditioner_detail_deleteProfileImage": "Profilbild löschen",
   "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?",
+
+  "branches_overview_title": "Filialen",
+
+  "branch_detail_updateSuccess": "Filiale erfolgreich aktualisiert",
+  "branch_detail_branchName": "Filialname",
+  "branch_detail_serviceType": "Servicetyp",
+  "branch_detail_isMainBranch": "Hauptfiliale",
+  "branch_detail_isActive": "Aktiv",
+  "branch_detail_uidNumber": "UID-Nummer",
+  "branch_detail_districtCourt": "Amtsgericht",
+  "branch_detail_commercialRegister": "Handelsregister",
+  "branch_detail_address": "Adresse",
+  "branch_detail_validationMessage": "Filialname und E-Mail sind Pflichtfelder",
 
   "settings_title": "Einstellungen",
   "settings_basic": "Grundeinstellungen",

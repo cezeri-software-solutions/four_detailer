@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:croppy/croppy.dart';
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +31,8 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     on<ShowImageEditingChangedEvent>(_onShowImageEditingChanged);
     on<IsEditModeChangedEvent>(_onisInEditModeChanged);
     on<IsPaymentEditModeChangedEvent>(_onisPaymentInEditModeChanged);
-    on<AddEditImageEvent>(_onAddEditImage);
-    on<RemoveImageEvent>(_onRemoveImage);
+    on<ConditionerAddEditImageEvent>(_onConditionerAddEditImage);
+    on<ConditionerRemoveImageEvent>(_onConditionerRemoveImage);
   }
 
   void _onSetConditionerStateToInitial(SetConditionerStateToInitialEvnet event, Emitter<ConditionerState> emit) {
@@ -76,22 +77,30 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     emit(state.copyWith(isInPaymentEditMode: !state.isInPaymentEditMode));
   }
 
-  void _onAddEditImage(AddEditImageEvent event, Emitter<ConditionerState> emit) async {
+  void _onConditionerAddEditImage(ConditionerAddEditImageEvent event, Emitter<ConditionerState> emit) async {
+    MyFile? phMyFile;
     MyFile? myFile;
 
     try {
-      final pickedImage = await ImagePicker().pickImage(source: event.source);
-      if (pickedImage == null) return;
+      if (event.source == MyImageSource.file) {
+        final pickedFile = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['png', 'jpg', 'jpeg']);
+        if (pickedFile == null) return;
 
-      if (!event.context.mounted) return;
+        phMyFile = await convertPlatfomFileToMyFile(pickedFile.files.first);
+      } else {
+        final pickedImage = await ImagePicker().pickImage(source: event.source == MyImageSource.camera ? ImageSource.camera : ImageSource.gallery);
+        if (pickedImage == null) return;
 
-      final myFileFromXFile = await convertXFileToMyFile(pickedImage);
+        if (!event.context.mounted) return;
+
+        phMyFile = await convertXFileToMyFile(pickedImage);
+      }
 
       if (!event.context.mounted) return;
 
       final result = await showMaterialImageCropper(
         event.context,
-        imageProvider: MemoryImage(myFileFromXFile.fileBytes),
+        imageProvider: MemoryImage(phMyFile.fileBytes),
         allowedAspectRatios: [const CropAspectRatio(width: 1, height: 1)],
         cropPathFn: ellipseCropShapeFn,
       );
@@ -109,7 +118,7 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
       final resizedImage = img.copyResize(baseSizeImage, height: size, width: size);
       final bytes = img.encodePng(resizedImage);
 
-      myFile = myFileFromXFile.copyWith(fileBytes: bytes, mimeType: lookupMimeType('', headerBytes: bytes));
+      myFile = phMyFile.copyWith(fileBytes: bytes, mimeType: lookupMimeType('', headerBytes: bytes));
     } on PlatformException catch (e) {
       logger.e(e);
     }
@@ -130,7 +139,7 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     emit(state.copyWith(fosConditionerOnUpdateOption: none()));
   }
 
-  void _onRemoveImage(RemoveImageEvent event, Emitter<ConditionerState> emit) async {
+  void _onConditionerRemoveImage(ConditionerRemoveImageEvent event, Emitter<ConditionerState> emit) async {
     final fos = await _conditionerRepository.deleteConditionerImage(state.conditioner!.id, state.conditioner!.imageUrl);
 
     emit(state.copyWith(

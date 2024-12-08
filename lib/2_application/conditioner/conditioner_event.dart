@@ -19,15 +19,15 @@ class IsEditModeChangedEvent extends ConditionerEvent {}
 
 class IsPaymentEditModeChangedEvent extends ConditionerEvent {}
 
-class AddEditImageEvent extends ConditionerEvent {
+class ConditionerAddEditImageEvent extends ConditionerEvent {
   final BuildContext context;
-  final ImageSource source;
+  final MyImageSource source;
 
-  AddEditImageEvent({required this.context, required this.source});
+  ConditionerAddEditImageEvent({required this.context, required this.source});
 }
 
-class RemoveImageEvent extends ConditionerEvent {
+class ConditionerRemoveImageEvent extends ConditionerEvent {
   final BuildContext context;
 
-  RemoveImageEvent({required this.context});
+  ConditionerRemoveImageEvent({required this.context});
 }

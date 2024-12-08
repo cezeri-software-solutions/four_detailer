@@ -138,7 +138,7 @@ class ConditionerRepositoryImpl implements ConditionerRepository {
 
       final url = fosUploadImage.getRight();
 
-      await supabase.from('conditioners').update({'image_url': url}).eq('id', conditionerId).select().single();
+      await supabase.from('conditioners').update({'image_url': url}).eq('id', conditionerId);
 
       final fosConditioner = await getConditionerById(conditionerId);
       if (fosConditioner.isLeft()) return Left(GeneralFailure(message: fosConditioner.getLeft().message));
@@ -164,9 +164,14 @@ class ConditionerRepositoryImpl implements ConditionerRepository {
     try {
       await deleteFilesFromSupabaseStorageByUrl(ownerId, [imageUrl]);
 
-      final updatedConditioner = await supabase.from('conditioners').update({'image_url': ''}).eq('id', conditionerId).select().single();
+      await supabase.from('conditioners').update({'image_url': ''}).eq('id', conditionerId);
 
-      return Right(Conditioner.fromJson(updatedConditioner));
+      final fosConditioner = await getConditionerById(conditionerId);
+      if (fosConditioner.isLeft()) return Left(GeneralFailure(message: fosConditioner.getLeft().message));
+
+      final updatedConditioner = fosConditioner.getRight();
+
+      return Right(updatedConditioner);
     } on PostgrestException catch (e) {
       logger.e(e.message);
       return Left(GeneralFailure(message: 'Beim Aktualisieren des Profilbildes ist ein Fehler aufgetreten. Error: $e'));
