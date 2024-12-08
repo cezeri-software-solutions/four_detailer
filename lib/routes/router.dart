@@ -20,6 +20,8 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(page: HomeRoute.page, path: '/home'),
         AutoRoute(page: ConditionerDetailRoute.page, path: '/conditioner-detail'),
+        AutoRoute(page: BranchesOverviewRoute.page, path: '/branches-overview'),
+        AutoRoute(page: BranchDetailRoute.page, path: '/branch-detail'),
         AutoRoute(page: SettingsRoute.page, path: '/settings'),
       ];
 }

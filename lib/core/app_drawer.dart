@@ -76,6 +76,11 @@ class _AppDrawerState extends State<AppDrawer> {
                       onTap: () => navigateToRoute(const HomeRoute()),
                     ),
                     ListTile(
+                      leading: const Icon(Icons.store),
+                      title: Text(context.l10n.app_drawer_branches),
+                      onTap: () => navigateToRoute(const BranchesOverviewRoute()),
+                    ),
+                    ListTile(
                       leading: const Icon(Icons.settings),
                       title: Text(context.l10n.app_drawer_settings),
                       onTap: () => navigateToRoute(const SettingsRoute()),

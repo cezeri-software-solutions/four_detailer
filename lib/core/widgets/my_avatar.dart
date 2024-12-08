@@ -83,6 +83,7 @@ class MyAvatar extends StatelessWidget {
             shape: shape!,
             border: Border.all(color: borderColor!),
             image: DecorationImage(image: imageProvider, fit: fit),
+            color: context.brightness == Brightness.light ? Colors.white : Colors.black,
           ),
         ),
         placeholder: (context, url) => CircleAvatar(

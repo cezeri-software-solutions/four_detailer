@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '/core/core.dart';
 import 'address.dart';
 
 part 'branch.g.dart';
@@ -136,4 +138,27 @@ class Branch extends Equatable {
 
   @override
   bool get stringify => true;
+}
+
+extension ServiceTypeConvertToString on ServiceType {
+  String toLocalizedString(BuildContext context) {
+    return switch (this) {
+      ServiceType.stationary => context.l10n.enum_serviceType_stationary,
+      ServiceType.mobile => context.l10n.enum_serviceType_mobile,
+      ServiceType.both => context.l10n.enum_serviceType_both,
+    };
+  }
+}
+
+extension StringConvertToServiceType on String {
+  ServiceType toServiceType(BuildContext context) {
+    if (this == context.l10n.enum_serviceType_stationary) {
+      return ServiceType.stationary;
+    } else if (this == context.l10n.enum_serviceType_mobile) {
+      return ServiceType.mobile;
+    } else if (this == context.l10n.enum_serviceType_both) {
+      return ServiceType.both;
+    }
+    throw Exception('Invalid ServiceType string');
+  }
 }

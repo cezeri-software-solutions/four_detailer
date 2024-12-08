@@ -41,7 +41,6 @@ class ConditionerState {
     Conditioner? conditioner,
     AbstractFailure? failure,
     bool? resetFailure,
-    bool? isAnyFailure,
     bool? isLoadingConditionerOnObserve,
     bool? isLoadingConditionerOnUpdate,
     Option<Either<AbstractFailure, Conditioner>>? fosConditionerOnObserveOption,

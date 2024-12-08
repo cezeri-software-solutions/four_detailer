@@ -4,6 +4,7 @@ export 'conditioner.dart';
 export 'conditioner_payment.dart';
 export 'country.dart';
 export 'currency.dart';
+export 'enums.dart';
 export 'helpers/helpers.dart';
 export 'settings/bank_details.dart';
 export 'settings/document_praefixes.dart';

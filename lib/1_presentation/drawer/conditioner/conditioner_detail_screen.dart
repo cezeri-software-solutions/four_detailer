@@ -36,11 +36,9 @@ class _ConditionerDetailScreenState extends State<ConditionerDetailScreen> with 
       value: _conditionerBloc,
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is AuthStateUnauthenticated) context.router.replaceAll([const SplashRoute()]);
-            },
-          ),
+          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+            if (state is AuthStateUnauthenticated) context.router.replaceAll([const SplashRoute()]);
+          }),
           BlocListener<ConditionerBloc, ConditionerState>(
             listenWhen: (p, c) => p.fosConditionerOnObserveOption != c.fosConditionerOnObserveOption,
             listener: (context, state) {
