@@ -31,7 +31,7 @@ class _ConditionerDetailContent extends StatelessWidget {
   final ConditionerBloc conditionerBloc;
   final ConditionerState state;
 
-  const _ConditionerDetailContent({required this.conditionerBloc, required this.state, super.key});
+  const _ConditionerDetailContent({required this.conditionerBloc, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _ConditionerDetailContent extends StatelessWidget {
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.only(left: 12, right: 12, top: 12, bottom: context.breakpoint.isMobile ? 12 : 48),
         child: Column(
           children: [
             MyBusinessCard(

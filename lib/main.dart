@@ -69,8 +69,8 @@ class MyApp extends StatelessWidget {
           return ResponsiveBreakpoints.builder(
             child: child!,
             breakpoints: [
-              const Breakpoint(start: 0, end: 699, name: MOBILE),
-              const Breakpoint(start: 700, end: 1399, name: TABLET),
+              const Breakpoint(start: 0, end: 999, name: MOBILE),
+              const Breakpoint(start: 1000, end: 1399, name: TABLET),
               const Breakpoint(start: 1400, end: 1920, name: DESKTOP),
               const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
             ],

@@ -66,7 +66,7 @@ class SettingsContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.all(isMobile ? 12 : 24),
+        padding: isMobile ? const EdgeInsets.all(12) : const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
