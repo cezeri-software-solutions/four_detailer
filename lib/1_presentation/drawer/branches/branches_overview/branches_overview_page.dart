@@ -31,7 +31,7 @@ class _BranchesOverviewContent extends StatelessWidget {
   final BranchesOverviewBloc branchesOverviewBloc;
   final BranchesOverviewState state;
 
-  const _BranchesOverviewContent({required this.branchesOverviewBloc, required this.state, super.key});
+  const _BranchesOverviewContent({required this.branchesOverviewBloc, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _BranchesOverviewContent extends StatelessWidget {
 class _BranchTile extends StatelessWidget {
   final Branch branch;
 
-  const _BranchTile({required this.branch, super.key});
+  const _BranchTile({required this.branch});
 
   @override
   Widget build(BuildContext context) {

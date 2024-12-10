@@ -9,10 +9,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
-      drawer: const AppDrawer(),
+      drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
       appBar: AppBar(),
-      body: const Center(child: Text('Home Screen')),
+      body: Center(child: Text('Home Screen: width: ${width.toString()}')),
     );
   }
 }

@@ -68,9 +68,12 @@ class _ConditionerDetailScreenState extends State<ConditionerDetailScreen> with 
           ),
         ],
         child: Scaffold(
-          drawer: const AppDrawer(),
-          appBar: AppBar(actions: [IconButton(onPressed: () => _conditionerBloc.add(GetCurrentConditionerEvent()), icon: const Icon(Icons.refresh))]),
-          body: SafeArea(child: ConditionerDetailPage(conditionerBloc: _conditionerBloc)),
+          appBar: AppBar(
+            actions: [
+              IconButton(onPressed: () => _conditionerBloc.add(GetCurrentConditionerEvent()), icon: const Icon(Icons.refresh)),
+            ],
+          ),
+          body: ConditionerDetailPage(conditionerBloc: _conditionerBloc),
         ),
       ),
     );

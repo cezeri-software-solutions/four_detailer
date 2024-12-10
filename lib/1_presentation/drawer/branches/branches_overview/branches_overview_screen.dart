@@ -53,11 +53,15 @@ class _BranchesOverviewScreenState extends State<BranchesOverviewScreen> with Au
           ),
         ],
         child: Scaffold(
-          drawer: const AppDrawer(),
+          drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
             title: Text(context.l10n.branches_overview_title),
-            centerTitle: false,
-            actions: [IconButton(onPressed: () => _branchesOverviewBloc.add(GetBranchesEvent()), icon: const Icon(Icons.refresh))],
+            actions: [
+              IconButton(
+                onPressed: () => _branchesOverviewBloc.add(GetBranchesEvent()),
+                icon: const Icon(Icons.refresh),
+              ),
+            ],
           ),
           body: BranchesOverviewPage(branchesOverviewBloc: _branchesOverviewBloc),
         ),

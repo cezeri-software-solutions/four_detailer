@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:four_detailer/1_presentation/drawer/settings/settings_page.dart';
 
 import '../../../2_application/auth/auth_bloc.dart';
 import '../../../2_application/settings/settings_bloc.dart';
 import '../../../core/core.dart';
 import '../../../injection.dart';
 import '../../../routes/router.gr.dart';
+import 'settings_page.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
@@ -35,11 +35,9 @@ class _SettingsScreenState extends State<SettingsScreen> with AutomaticKeepAlive
       value: _settingsBloc,
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is AuthStateUnauthenticated) context.router.replaceAll([const SplashRoute()]);
-            },
-          ),
+          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+            if (state is AuthStateUnauthenticated) context.router.replaceAll([const SplashRoute()]);
+          }),
           BlocListener<SettingsBloc, SettingsState>(
             listenWhen: (p, c) => p.fosSettingsOnUpdateOption != c.fosSettingsOnUpdateOption,
             listener: (context, state) {
@@ -57,14 +55,16 @@ class _SettingsScreenState extends State<SettingsScreen> with AutomaticKeepAlive
           ),
         ],
         child: Scaffold(
-          drawer: const AppDrawer(),
+          drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
             title: Text(context.l10n.settings_title),
-            centerTitle: false,
             actions: [
-              IconButton(onPressed: () => _settingsBloc.add(LoadSettingsEvent()), icon: const Icon(Icons.refresh)),
+              IconButton(
+                onPressed: () => _settingsBloc.add(LoadSettingsEvent()),
+                icon: const Icon(Icons.refresh),
+              ),
               MySaveButton(
-                label: 'Speichern',
+                label: context.l10n.save,
                 isLoading: _settingsBloc.state.isLoadingSettingsOnUpdate,
                 onPressed: () => _settingsBloc.add(SaveMainSettingsEvent()),
               ),
