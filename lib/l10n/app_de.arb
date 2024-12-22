@@ -1,6 +1,7 @@
 {
   "@@locale": "de",
   "ok": "OK",
+  "neww": "Neu",
   "danger": "Achtung",
   "error": "Fehler",
   "cancel": "Abbrechen",
@@ -11,6 +12,7 @@
   "password": "Passwort",
   "save": "Speichern",
   "edit": "Bearbeiten",
+  "other": "Sonstiges",
 
   "gender": "Geschlecht",
   "gender_male": "Herr",
@@ -33,7 +35,10 @@
 
   "currency": "Währung",
   "tax": "Steuer",
+  "taxNumber": "Steuernummer",
   "tax_abbreviated": "MwSt.",
+
+  "mandatory": "Pflichtfeld",
 
   "error_on_load_countries": "Beim Laden der Länder ist ein Fehler aufgetreten.",
 
@@ -44,9 +49,33 @@
   "my_image_source_edit": "Bearbeiten",
   "my_image_source_delete": "Löschen",
 
+  "enum_customerStatus_prospect": "Interessent",
+  "enum_customerStatus_customer": "Kunde",
+
+  "enum_customerType_private": "Privat",
+  "enum_customerType_business": "Gewerblich",
+
   "enum_serviceType_stationary": "Stationär",
   "enum_serviceType_mobile": "Mobil",
   "enum_serviceType_both": "Stationär & Mobile",
+
+  "enum_fuelType_petrol": "Benzin",
+  "enum_fuelType_diesel": "Diesel",
+  "enum_fuelType_electric": "Elektro",
+  "enum_fuelType_hybrid": "Hybrid",
+  "enum_fuelType_pluginHybrid": "Plug-in Hybrid",
+  "enum_fuelType_lpg": "LPG",
+  "enum_fuelType_cng": "CNG",
+
+  "enum_bodyType_motorcycle": "Motorrad",
+  "enum_bodyType_compact": "Kleinwagen",
+  "enum_bodyType_sedan": "Limousine",
+  "enum_bodyType_wagon": "Kombi",
+  "enum_bodyType_convertible": "Cabrio / Roadster",
+  "enum_bodyType_coupe": "Coupe / Sportwagen",
+  "enum_bodyType_suv": "SUV / Geländewagen / Pickup",
+  "enum_bodyType_van": "Van / Kleinbus",
+  "enum_bodyType_transporter": "Transporter",
 
   "auth_failure_onDefaultFailure": "Ein unerwarteter Fehler ist aufgetreten.\nKontaktiere den Kundendienst.",
   "auth_failure_wrongEmailOrPasswordFailure": "Die eingegebene E-Mail-Adresse oder das Passwort ist nicht korrekt.\nBitte überprüfe deine Eingaben und versuchen es erneut.",
@@ -80,14 +109,67 @@
   "defaultPaymentMethodShortName": "Bar",
 
   "app_drawer_homepage": "Startseite",
+  "app_drawer_customers": "Kunden",
+  "app_drawer_employees": "Mitarbeiter",
   "app_drawer_branches": "Filialen",
   "app_drawer_settings": "Einstellungen",
   "app_drawer_signOut": "Abmelden",
+
+  "conditioners_overview_title": "Mitarbeiter",
 
   "conditioner_detail_showProfile": "Profil anzeigen",
   "conditioner_detail_editProfileImage": "Profilbild bearbeiten",
   "conditioner_detail_deleteProfileImage": "Profilbild löschen",
   "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?",
+
+  "customers_overview_title": "Kunden",
+  "customers_overview_emptyTitle": "Keine Kunden gefunden",
+  "customers_overview_delete_customers_success": "Kunde/n erfolgreich gelöscht",
+  "customers_overview_delete_customers_title": "Bist du sicher, dass du den Kunden \"{customerName}\" löschen willst?",
+  "@customers_overview_delete_customers_title": {
+    "placeholders": {
+      "customerName": {
+        "type": "String"
+      }
+    }
+  },
+
+  "customer_detail_title": "Neuer Kunde",
+  "customer_detail_companyNameIsMandatory": "Der Firmenname ist bei Gewerbekunden ein Pflichtfeld.\nBitte gib zuerst den Firmenname ein um deine Änderungen speichern zu können.",
+  "customer_detail_lastNameIsMandatory": "Der Nachname ist bei Privatkunden ein Pflichtfeld.\nBitte gib zuerst den Nachname ein um deine Änderungen speichern zu können.",
+
+  "customer_detail_updateSuccess": "Kunde erfolgreich aktualisiert",
+  "customer_detail_customerName": "Kundenname",
+  "customer_detail_customerStatus": "Kundenstatus",
+  "customer_detail_customerType": "Kundenart",
+  "customer_detail_isActive": "Aktiv",
+  "customer_detail_uidNumber": "UID-Nummer",
+  "customer_detail_address": "Adresse",
+  "customer_detail_validationMessage": "Kundenname und E-Mail sind Pflichtfelder",
+  
+  "customer_detail_customerData": "Kundendaten",
+  "customer_detail_vehicles": "Kundenfahrzeuge",
+  "customer_detail_addVehicle": "Fahrzeug hinzufügen",
+  "customer_detail_contactData": "Kontaktdaten",
+
+  "customer_detail_newVehicle": "Neues Fahrzeug",
+  "customer_detail_editVehicle": "Fahrzeug bearbeiten",
+  "customer_detail_vehicleBrand": "Marke",
+  "customer_detail_vehicleModel": "Modell",
+  "customer_detail_vehicleModelVariant": "Modellvariante",
+  "customer_detail_vehicleMileage": "Kilometerstand",
+  "customer_detail_vehiclePowerHP": "Leistung (PS)",
+  "customer_detail_vehiclePowerKW": "Leistung (KW)",
+  "customer_detail_vehicleVin": "Fahrgestellnummer",
+  "customer_detail_vehicleLicensePlate": "Kennzeichen",
+  "customer_detail_vehicleNotes": "Notizen",
+  "customer_detail_vehicleColor": "Farbe",
+  "customer_detail_vehicleColorCode": "Farbcode",
+  "customer_detail_vehicleComment": "Kommentar",
+  "customer_detail_vehicleFirstRegistration": "Erstzulassung",
+  "customer_detail_vehicleFuelType": "Kraftstoffart",
+  "customer_detail_vehicleBodyType": "Karosserieform",
+  "customer_detail_vehicleBrandIsMandatory": "Die Fahrzeugmarke ist ein Pflichtfeld.\nBitte gib zuerst die Marke ein um deine Änderungen speichern zu können.",
 
   "branches_overview_title": "Filialen",
 

@@ -13,10 +13,7 @@ import 'branch_detail_page.dart';
 class BranchDetailScreen extends StatefulWidget {
   final String branchId;
 
-  const BranchDetailScreen({
-    super.key,
-    @PathParam('branchId') required this.branchId,
-  });
+  const BranchDetailScreen({super.key, @PathParam('branchId') required this.branchId});
 
   @override
   State<BranchDetailScreen> createState() => _BranchDetailScreenState();

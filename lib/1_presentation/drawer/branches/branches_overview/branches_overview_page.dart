@@ -35,14 +35,19 @@ class _BranchesOverviewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(12),
-      shrinkWrap: true,
-      itemCount: state.listOfBranches!.length,
-      itemBuilder: (context, index) {
-        final branch = state.listOfBranches![index];
-        return _BranchTile(branch: branch);
-      },
+    return RefreshIndicator.adaptive(
+      onRefresh: () async => branchesOverviewBloc.add(GetBranchesEvent()),
+      child: ListView(
+        children: [
+          ListView.builder(
+            padding: EdgeInsets.all(context.breakpoint.isMobile ? 12 : 24),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: state.listOfBranches!.length,
+            itemBuilder: (context, index) => _BranchTile(branch: state.listOfBranches![index]),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -73,9 +78,7 @@ class _BranchTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(branch.branchName, 
-                      style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)
-                    ),
+                    Text(branch.branchName, style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
                     Gaps.h4,
                     Row(
                       children: [

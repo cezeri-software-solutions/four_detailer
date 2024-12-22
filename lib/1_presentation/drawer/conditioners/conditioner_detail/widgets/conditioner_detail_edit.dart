@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:four_detailer/2_application/conditioner/conditioner_bloc.dart';
+import 'package:four_detailer/2_application/conditioner_detail/conditioner_detail_bloc.dart';
 
 import '/core/core.dart';
-import '../../../../3_domain/models/models.dart';
-import '../../../../constants.dart';
+import '../../../../../3_domain/models/models.dart';
+import '../../../../../constants.dart';
 
 class ConditionerDetailEdit extends StatefulWidget {
-  final ConditionerBloc conditionerBloc;
+  final ConditionerDetailBloc conditionerDetailBloc;
   final Conditioner conditioner;
   final bool isLoading;
 
-  const ConditionerDetailEdit({super.key, required this.conditionerBloc, required this.conditioner, required this.isLoading});
+  const ConditionerDetailEdit({super.key, required this.conditionerDetailBloc, required this.conditioner, required this.isLoading});
 
   @override
   State<ConditionerDetailEdit> createState() => _ConditionerDetailEditState();
@@ -194,7 +194,7 @@ class _ConditionerDetailEditState extends State<ConditionerDetailEdit> {
 
     final conditioner = await _genConditioner();
 
-    widget.conditionerBloc.add(UpdatetConditionerEvent(conditioner: conditioner));
+    widget.conditionerDetailBloc.add(UpdatetConditionerEvent(conditioner: conditioner));
   }
 
   bool _canCreate() => _firstNameController.text.isNotEmpty && _lastNameController.text.isNotEmpty;

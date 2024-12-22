@@ -1,14 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:four_detailer/3_domain/models/conditioner_payment.dart';
 import 'package:four_detailer/core/extensions/context_extensions.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'address.dart';
+import 'models.dart';
 
 part 'conditioner.g.dart';
-
-enum Gender { male, female, empty }
 
 enum ConditionerType { admin, owner, employee }
 

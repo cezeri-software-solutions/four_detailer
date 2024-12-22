@@ -37,6 +37,28 @@ class ConditionerRepositoryImpl implements ConditionerRepository {
   }
 
   @override
+  Future<Either<AbstractFailure, List<Conditioner>>> getConditioners() async {
+    if (!await checkInternetConnection()) return left(NoConnectionFailure());
+    final ownerId = await getOwnerId();
+    if (ownerId == null) return Left(GeneralFailure(message: 'Dein User konnte nicht aus der Datenbank geladen werden'));
+
+    try {
+      final response = await supabase.rpc('get_conditioners_by_owner_id', params: {'owner_id': ownerId});
+
+      final List<Conditioner> conditioners =
+          (response as List<dynamic>).map((conditioner) => Conditioner.fromJson(conditioner as Map<String, dynamic>)).toList();
+
+      return right(conditioners);
+    } on PostgrestException catch (e) {
+      logger.e(e);
+      return Left(GeneralFailure(message: 'Beim Laden der Aufbereiter ist ein Fehler aufgetreten. Error: $e'));
+    } catch (e) {
+      logger.e(e);
+      return Left(GeneralFailure(message: 'Beim Laden der Aufbereiter ist ein Fehler aufgetreten. Error: $e'));
+    }
+  }
+
+  @override
   Future<Either<AbstractFailure, Conditioner>> getCurConditioner() async {
     if (!await checkInternetConnection()) return left(NoConnectionFailure());
     final currentUserUid = supabase.auth.currentUser!.id;

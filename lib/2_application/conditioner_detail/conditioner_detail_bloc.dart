@@ -16,15 +16,15 @@ import '../../constants.dart';
 import '../../core/core.dart';
 import '../../failures/failures.dart';
 
-part 'conditioner_event.dart';
-part 'conditioner_state.dart';
+part 'conditioner_detail_event.dart';
+part 'conditioner_detail_state.dart';
 
-class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
+class ConditionerDetailBloc extends Bloc<ConditionerDetailEvent, ConditionerDetailState> {
   final ConditionerRepository _conditionerRepository;
 
-  ConditionerBloc({required ConditionerRepository conditionerRepository})
+  ConditionerDetailBloc({required ConditionerRepository conditionerRepository})
       : _conditionerRepository = conditionerRepository,
-        super(ConditionerState.initial()) {
+        super(ConditionerDetailState.initial()) {
     on<SetConditionerStateToInitialEvnet>(_onSetConditionerStateToInitial);
     on<GetCurrentConditionerEvent>(_onGetCurrentConditioner);
     on<UpdatetConditionerEvent>(_onUpdatetConditioner);
@@ -35,11 +35,11 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     on<ConditionerRemoveImageEvent>(_onConditionerRemoveImage);
   }
 
-  void _onSetConditionerStateToInitial(SetConditionerStateToInitialEvnet event, Emitter<ConditionerState> emit) {
-    emit(ConditionerState.initial());
+  void _onSetConditionerStateToInitial(SetConditionerStateToInitialEvnet event, Emitter<ConditionerDetailState> emit) {
+    emit(ConditionerDetailState.initial());
   }
 
-  void _onGetCurrentConditioner(GetCurrentConditionerEvent event, Emitter<ConditionerState> emit) async {
+  void _onGetCurrentConditioner(GetCurrentConditionerEvent event, Emitter<ConditionerDetailState> emit) async {
     emit(state.copyWith(isLoadingConditionerOnObserve: true));
 
     final fos = await _conditionerRepository.getCurConditioner();
@@ -52,7 +52,7 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     emit(state.copyWith(fosConditionerOnObserveOption: none()));
   }
 
-  void _onUpdatetConditioner(UpdatetConditionerEvent event, Emitter<ConditionerState> emit) async {
+  void _onUpdatetConditioner(UpdatetConditionerEvent event, Emitter<ConditionerDetailState> emit) async {
     emit(state.copyWith(isLoadingConditionerOnUpdate: true));
 
     final fos = await _conditionerRepository.updateConditioner(event.conditioner);
@@ -65,19 +65,19 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     emit(state.copyWith(fosConditionerOnUpdateOption: none()));
   }
 
-  void _onShowImageEditingChanged(ShowImageEditingChangedEvent event, Emitter<ConditionerState> emit) {
+  void _onShowImageEditingChanged(ShowImageEditingChangedEvent event, Emitter<ConditionerDetailState> emit) {
     emit(state.copyWith(showImageEditing: !state.showImageEditing));
   }
 
-  void _onisInEditModeChanged(IsEditModeChangedEvent event, Emitter<ConditionerState> emit) {
+  void _onisInEditModeChanged(IsEditModeChangedEvent event, Emitter<ConditionerDetailState> emit) {
     emit(state.copyWith(isInEditMode: !state.isInEditMode));
   }
 
-  void _onisPaymentInEditModeChanged(IsPaymentEditModeChangedEvent event, Emitter<ConditionerState> emit) {
+  void _onisPaymentInEditModeChanged(IsPaymentEditModeChangedEvent event, Emitter<ConditionerDetailState> emit) {
     emit(state.copyWith(isInPaymentEditMode: !state.isInPaymentEditMode));
   }
 
-  void _onConditionerAddEditImage(ConditionerAddEditImageEvent event, Emitter<ConditionerState> emit) async {
+  void _onConditionerAddEditImage(ConditionerAddEditImageEvent event, Emitter<ConditionerDetailState> emit) async {
     MyFile? phMyFile;
     MyFile? myFile;
 
@@ -102,7 +102,7 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
         event.context,
         imageProvider: MemoryImage(phMyFile.fileBytes),
         allowedAspectRatios: [const CropAspectRatio(width: 1, height: 1)],
-        cropPathFn: ellipseCropShapeFn,
+        cropPathFn: aabbCropShapeFn,
       );
       if (result == null) return;
 
@@ -139,7 +139,7 @@ class ConditionerBloc extends Bloc<ConditionerEvent, ConditionerState> {
     emit(state.copyWith(fosConditionerOnUpdateOption: none()));
   }
 
-  void _onConditionerRemoveImage(ConditionerRemoveImageEvent event, Emitter<ConditionerState> emit) async {
+  void _onConditionerRemoveImage(ConditionerRemoveImageEvent event, Emitter<ConditionerDetailState> emit) async {
     final fos = await _conditionerRepository.deleteConditionerImage(state.conditioner!.id, state.conditioner!.imageUrl);
 
     emit(state.copyWith(

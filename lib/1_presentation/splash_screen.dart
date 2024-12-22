@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_detailer/3_domain/repositories/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 
-import '../2_application/conditioner/conditioner_bloc.dart';
+import '../2_application/conditioner_detail/conditioner_detail_bloc.dart';
 import '../core/core.dart';
 import '../failures/failures.dart';
 import '../injection.dart';
@@ -20,16 +20,16 @@ class SplashScreen extends StatelessWidget {
     // authRepo.signOut();
     final isUserSignedIn = authRepo.checkIfUserIsSignedIn();
 
-    final conditionerBloc = sl<ConditionerBloc>();
+    final conditionerDetailBloc = sl<ConditionerDetailBloc>();
 
-    isUserSignedIn ? conditionerBloc.add(GetCurrentConditionerEvent()) : context.router.replaceAll([const SignInRoute()]);
+    isUserSignedIn ? conditionerDetailBloc.add(GetCurrentConditionerEvent()) : context.router.replaceAll([const SignInRoute()]);
     // final settingsBloc = sl<MainSettingsBloc>();
 
-    return BlocProvider<ConditionerBloc>(
-      create: (context) => conditionerBloc,
+    return BlocProvider<ConditionerDetailBloc>(
+      create: (context) => conditionerDetailBloc,
       child: MultiBlocListener(
         listeners: [
-          BlocListener<ConditionerBloc, ConditionerState>(
+          BlocListener<ConditionerDetailBloc, ConditionerDetailState>(
             listenWhen: (p, c) => p.fosConditionerOnObserveOption != c.fosConditionerOnObserveOption,
             listener: (context, state) {
               state.fosConditionerOnObserveOption.fold(

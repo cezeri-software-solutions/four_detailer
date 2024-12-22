@@ -22,9 +22,10 @@ class RootLayout extends StatelessWidget {
         config: {
           customBreakpoint: SlotLayout.from(
             key: const Key('Primary Navigation'),
-            builder: (_) => const Material(
+            builder: (_) => Material(
+              color: Theme.of(context).colorScheme.surfaceContainer,
               elevation: 1,
-              child: SizedBox(
+              child: const SizedBox(
                 width: 280,
                 child: AppDrawer(isPersistent: true),
               ),

@@ -37,6 +37,16 @@ class Country extends Equatable {
     );
   }
 
+  factory Country.germany() {
+    return Country(
+      id: '578a0644-d4dd-49ef-9d85-6d45f1b7c28a',
+      isoCode: 'DE',
+      name: 'Deutschland',
+      nameEnglish: 'Germany',
+      dialCode: '+49',
+    );
+  }
+
   Country copyWith({
     String? id,
     String? isoCode,

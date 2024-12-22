@@ -1,7 +1,7 @@
-part of 'conditioner_bloc.dart';
+part of 'conditioner_detail_bloc.dart';
 
 @immutable
-class ConditionerState {
+class ConditionerDetailState {
   final Conditioner? conditioner;
   final AbstractFailure? failure;
   final bool isLoadingConditionerOnObserve;
@@ -13,7 +13,7 @@ class ConditionerState {
   final bool isInEditMode;
   final bool isInPaymentEditMode;
 
-  const ConditionerState({
+  const ConditionerDetailState({
     required this.conditioner,
     required this.failure,
     required this.isLoadingConditionerOnObserve,
@@ -25,7 +25,7 @@ class ConditionerState {
     required this.isInPaymentEditMode,
   });
 
-  factory ConditionerState.initial() => ConditionerState(
+  factory ConditionerDetailState.initial() => ConditionerDetailState(
         conditioner: null,
         failure: null,
         isLoadingConditionerOnObserve: true,
@@ -37,7 +37,7 @@ class ConditionerState {
         isInPaymentEditMode: false,
       );
 
-  ConditionerState copyWith({
+  ConditionerDetailState copyWith({
     Conditioner? conditioner,
     AbstractFailure? failure,
     bool? resetFailure,
@@ -49,7 +49,7 @@ class ConditionerState {
     bool? isInEditMode,
     bool? isInPaymentEditMode,
   }) {
-    return ConditionerState(
+    return ConditionerDetailState(
       conditioner: conditioner ?? this.conditioner,
       failure: resetFailure == true ? null : failure ?? this.failure,
       isLoadingConditionerOnObserve: isLoadingConditionerOnObserve ?? this.isLoadingConditionerOnObserve,

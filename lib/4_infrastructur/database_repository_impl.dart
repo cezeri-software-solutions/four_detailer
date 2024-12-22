@@ -115,4 +115,20 @@ class DatabaseRepositoryImpl implements DatabaseRepository {
       return Left(GeneralFailure(message: e.message));
     }
   }
+
+  @override
+  Future<Either<AbstractFailure, List<String>>> getVehicleBrands({required String searchTerm}) async {
+    if (!await checkInternetConnection()) return Left(NoConnectionFailure());
+
+    try {
+      final response = await supabase.from('vehicle_brands').select().ilike('brand_name', '%$searchTerm%');
+
+      final listOfVehicleBrands = response.map((e) => e['brand_name'] as String).toList();
+
+      return Right(listOfVehicleBrands);
+    } on PostgrestException catch (e) {
+      logger.e(e.message);
+      return Left(GeneralFailure(message: e.message));
+    }
+  }
 }

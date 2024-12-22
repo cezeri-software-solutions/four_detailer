@@ -40,7 +40,7 @@ class Address extends Equatable {
   factory Address.empty() {
     return Address(
       id: '',
-      country: Country.empty(),
+      country: Country.germany(),
       state: '',
       city: '',
       street: '',

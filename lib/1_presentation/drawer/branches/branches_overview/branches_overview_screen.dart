@@ -63,7 +63,7 @@ class _BranchesOverviewScreenState extends State<BranchesOverviewScreen> with Au
               ),
             ],
           ),
-          body: BranchesOverviewPage(branchesOverviewBloc: _branchesOverviewBloc),
+          body: SafeArea(child: BranchesOverviewPage(branchesOverviewBloc: _branchesOverviewBloc)),
         ),
       ),
     );
