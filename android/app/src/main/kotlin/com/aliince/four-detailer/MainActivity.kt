@@ -1,4 +1,4 @@
-package com.cezerisoftwaresolutions.four_detailer
+package com.aliince.four-detailer
 
 import io.flutter.embedding.android.FlutterActivity
 
