@@ -47,7 +47,9 @@ NavigationBarThemeData lightNavigationBarTheme = NavigationBarThemeData(
 AppBarTheme lightAppBarTheme = AppBarTheme(
   titleTextStyle: textTheme.titleLarge!.copyWith(color: lightColorScheme.primary),
   titleSpacing: 6,
-  centerTitle: true,
+  centerTitle: false,
+  scrolledUnderElevation: 0,
+  backgroundColor: Colors.transparent,
 );
 
 NavigationBarThemeData darkNavigationBarTheme = NavigationBarThemeData(
@@ -62,7 +64,9 @@ NavigationBarThemeData darkNavigationBarTheme = NavigationBarThemeData(
 AppBarTheme darkAppBarTheme = AppBarTheme(
   titleTextStyle: textTheme.titleLarge!.copyWith(color: darkColorScheme.primary),
   titleSpacing: 6,
-  centerTitle: true,
+  centerTitle: false,
+  scrolledUnderElevation: 0,
+  backgroundColor: Colors.transparent,
 );
 
 const woltThemeData = WoltModalSheetThemeData(topBarShadowColor: Colors.transparent);

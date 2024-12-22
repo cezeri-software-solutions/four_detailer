@@ -55,6 +55,11 @@ class MyApp extends StatelessWidget {
           navigationBarTheme: darkNavigationBarTheme,
           appBarTheme: darkAppBarTheme,
           textTheme: textTheme,
+          // cupertinoOverrideTheme: CupertinoThemeData(
+          //   textTheme: CupertinoTextThemeData(
+          //     textStyle: TextStyle(color: darkColorScheme.onSurface),
+          //   ),
+          // ),
         ),
         supportedLocales: L10n.all,
         // locale: const Locale('de', 'DE'),

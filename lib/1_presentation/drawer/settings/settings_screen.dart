@@ -63,8 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> with AutomaticKeepAlive
                 onPressed: () => _settingsBloc.add(LoadSettingsEvent()),
                 icon: const Icon(Icons.refresh),
               ),
-              MySaveButton(
-                label: context.l10n.save,
+              MyAppBarActionSaveButton(
                 isLoading: _settingsBloc.state.isLoadingSettingsOnUpdate,
                 onPressed: () => _settingsBloc.add(SaveMainSettingsEvent()),
               ),

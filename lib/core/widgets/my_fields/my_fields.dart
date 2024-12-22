@@ -1,3 +1,4 @@
+export 'my_autocomplete_text_field_small.dart';
 export 'my_dropdown_button.dart';
 export 'my_dropdown_button_object.dart';
 export 'my_field_button.dart';

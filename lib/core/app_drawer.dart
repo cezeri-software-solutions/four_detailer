@@ -43,80 +43,90 @@ class _AppDrawerState extends State<AppDrawer> {
       }
     }
 
-    final drawerContent = Scaffold(
-      backgroundColor: context.colorScheme.surfaceContainer,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Gaps.h16,
-                    Column(
-                      children: [
-                        MyAvatar(
-                          name: _conditioner != null ? _conditioner!.name : '',
-                          imageUrl: _conditioner?.imageUrl,
-                          radius: 50,
-                          fontSize: 32,
-                          onTap: () => navigateToRoute(const ConditionerDetailRoute()),
-                        ),
-                        Gaps.h12,
-                        Text(
-                          _conditioner != null ? _conditioner!.name : '',
-                          style: context.textTheme.titleLarge,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Gaps.h4,
-                        Text(
-                          _conditioner != null ? _conditioner!.email : '',
-                          style: context.textTheme.titleMedium,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ).redacted(
-                        context: context, redact: _conditioner == null, configuration: RedactedConfiguration(autoFillText: 'Vorname Nachname')),
-                    Gaps.h12,
-                    ListTile(
-                      selected: context.router.isRouteActive(HomeRoute.name),
-                      selectedTileColor: context.colorScheme.surfaceContainerHigh,
-                      leading: const Icon(Icons.home),
-                      title: Text(context.l10n.app_drawer_homepage),
-                      onTap: () => navigateToRoute(const HomeRoute()),
-                    ),
-                    ListTile(
-                      selected: context.router.isRouteActive(BranchesOverviewRoute.name),
-                      selectedTileColor: context.colorScheme.surfaceContainerHigh,
-                      leading: const Icon(Icons.store),
-                      title: Text(context.l10n.app_drawer_branches),
-                      onTap: () => navigateToRoute(const BranchesOverviewRoute()),
-                    ),
-                    ListTile(
-                      selected: context.router.isRouteActive(SettingsRoute.name),
-                      selectedTileColor: context.colorScheme.surfaceContainerHigh,
-                      leading: const Icon(Icons.settings),
-                      title: Text(context.l10n.app_drawer_settings),
-                      onTap: () => navigateToRoute(const SettingsRoute()),
-                    ),
-                  ],
-                ),
+    final drawerContent = SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Gaps.h16,
+                  Column(
+                    children: [
+                      MyAvatar(
+                        name: _conditioner != null ? _conditioner!.name : '',
+                        imageUrl: _conditioner?.imageUrl,
+                        radius: 50,
+                        fontSize: 32,
+                        onTap: () => navigateToRoute(ConditionerDetailRoute(conditionerId: _conditioner!.id)),
+                      ),
+                      Gaps.h12,
+                      Text(
+                        _conditioner != null ? _conditioner!.name : '',
+                        style: context.textTheme.titleLarge,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Gaps.h4,
+                      Text(
+                        _conditioner != null ? _conditioner!.email : '',
+                        style: context.textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ).redacted(context: context, redact: _conditioner == null, configuration: RedactedConfiguration(autoFillText: 'Vorname Nachname')),
+                  Gaps.h12,
+                  ListTile(
+                    selected: context.router.isRouteActive(HomeRoute.name),
+                    selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                    leading: const Icon(Icons.home),
+                    title: Text(context.l10n.app_drawer_homepage),
+                    onTap: () => navigateToRoute(const HomeRoute()),
+                  ),
+                  ListTile(
+                    selected: context.router.isRouteActive(CustomersOverviewRoute.name),
+                    selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                    leading: const Icon(Icons.people),
+                    title: Text(context.l10n.app_drawer_customers),
+                    onTap: () => navigateToRoute(const CustomersOverviewRoute()),
+                  ),
+                  ListTile(
+                    selected: context.router.isRouteActive(ConditionersOverviewRoute.name),
+                    selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                    leading: const Icon(Icons.badge),
+                    title: Text(context.l10n.app_drawer_employees),
+                    onTap: () => navigateToRoute(const ConditionersOverviewRoute()),
+                  ),
+                  ListTile(
+                    selected: context.router.isRouteActive(BranchesOverviewRoute.name),
+                    selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                    leading: const Icon(Icons.store),
+                    title: Text(context.l10n.app_drawer_branches),
+                    onTap: () => navigateToRoute(const BranchesOverviewRoute()),
+                  ),
+                  ListTile(
+                    selected: context.router.isRouteActive(SettingsRoute.name),
+                    selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                    leading: const Icon(Icons.settings),
+                    title: Text(context.l10n.app_drawer_settings),
+                    onTap: () => navigateToRoute(const SettingsRoute()),
+                  ),
+                ],
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.exit_to_app, color: context.colorScheme.error),
-              title: Text(context.l10n.app_drawer_signOut),
-              onTap: () async {
-                final repo = GetIt.I<AuthRepository>();
-                await repo.signOut();
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app, color: context.colorScheme.error),
+            title: Text(context.l10n.app_drawer_signOut),
+            onTap: () async {
+              final repo = GetIt.I<AuthRepository>();
+              await repo.signOut();
 
-                if (context.mounted) context.router.replaceAll([const SplashRoute()]);
-              },
-            ),
-          ],
-        ),
+              if (context.mounted) context.router.replaceAll([const SplashRoute()]);
+            },
+          ),
+        ],
       ),
     );
 

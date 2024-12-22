@@ -10,4 +10,5 @@ abstract class DatabaseRepository {
   Future<Either<AbstractFailure, List<TimeZone>>> getTimeZones();
   Future<Either<AbstractFailure, List<Tax>>> getTaxes({String? countryCode, bool? isReduced});
   Future<Either<AbstractFailure, Tax>> getTaxByCountryCode(String countryCode);
+  Future<Either<AbstractFailure, List<String>>> getVehicleBrands({required String searchTerm});
 }
