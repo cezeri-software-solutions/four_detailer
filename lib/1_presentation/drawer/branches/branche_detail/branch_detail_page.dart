@@ -37,52 +37,58 @@ class _BranchDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = context.breakpoint.smallerOrEqualTo(MOBILE);
 
-    return Center(
-      child: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 12, right: 12, top: 12, bottom: context.breakpoint.isMobile ? 12 : 48),
-        child: Column(
-          children: [
-            MyBusinessCard(
-              showImageEditing: state.showImageEditing,
-              imageButtons: MyImageButtons(
-                imageUrl: state.branch!.branchLogo,
-                onPickImage: (source) => branchDetailBloc.add(BranchAddEditImageEvent(context: context, source: source)),
-                onRemoveImage: () => branchDetailBloc.add(BranchRemoveImageEvent(context: context)),
-              ),
-              avatar: MyAvatar(
-                name: state.branch!.branchName,
-                imageUrl: state.branch!.branchLogo,
-                radius: isMobile ? 50 : 65,
-                fontSize: isMobile ? 32 : 42,
-                borderColor: context.colorScheme.outlineVariant,
-                onTap: () => branchDetailBloc.add(ShowBranchImageEditingChangedEvent()),
-              ),
-              address: state.branch!.address,
-              name: state.branch!.branchName,
-              email: state.branch!.email,
-              iconButtons: [
-                IconButton(
-                  onPressed: () => branchDetailBloc.add(IsEditModeChangedEvent()),
-                  icon: Icon(state.isInEditMode ? Icons.edit_off : Icons.edit),
-                )
+    return RefreshIndicator.adaptive(
+      onRefresh: () async => branchDetailBloc.add(GetBranchEvent(branchId: state.branch!.id)),
+      child: ListView(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 12, right: 12, top: 12, bottom: context.breakpoint.isMobile ? 12 : 48),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MyBusinessCard(
+                  showImageEditing: state.showImageEditing,
+                  imageButtons: MyImageButtons(
+                    imageUrl: state.branch!.branchLogo,
+                    onPickImage: (source) => branchDetailBloc.add(BranchAddEditImageEvent(context: context, source: source)),
+                    onRemoveImage: () => branchDetailBloc.add(BranchRemoveImageEvent(context: context)),
+                  ),
+                  avatar: MyAvatar(
+                    name: state.branch!.branchName,
+                    imageUrl: state.branch!.branchLogo,
+                    radius: isMobile ? 50 : 65,
+                    fontSize: isMobile ? 32 : 42,
+                    borderColor: context.colorScheme.outlineVariant,
+                    onTap: () => branchDetailBloc.add(ShowBranchImageEditingChangedEvent()),
+                  ),
+                  address: state.branch!.address,
+                  name: state.branch!.branchName,
+                  email: state.branch!.email,
+                  iconButtons: [
+                    IconButton(
+                      onPressed: () => branchDetailBloc.add(IsEditModeChangedEvent()),
+                      icon: Icon(state.isInEditMode ? Icons.edit_off : Icons.edit),
+                    )
+                  ],
+                ),
+                Gaps.h32,
+                MyAnimatedExpansionContainer(
+                  isExpanded: state.isInEditMode,
+                  duration: const Duration(milliseconds: 400),
+                  reverseDuration: const Duration(milliseconds: 400),
+                  child: BranchDetailEdit(
+                    branchDetailBloc: branchDetailBloc,
+                    branch: state.branch!,
+                    isLoading: state.isLoadingBranchOnUpdate,
+                  ),
+                ),
               ],
+            ).redacted(
+              context: context,
+              redact: state.isLoadingBranchOnObserve || state.branch == null,
             ),
-            Gaps.h32,
-            MyAnimatedExpansionContainer(
-              isExpanded: state.isInEditMode,
-              duration: const Duration(milliseconds: 400),
-              reverseDuration: const Duration(milliseconds: 400),
-              child: BranchDetailEdit(
-                branchDetailBloc: branchDetailBloc,
-                branch: state.branch!,
-                isLoading: state.isLoadingBranchOnUpdate,
-              ),
-            ),
-          ],
-        ).redacted(
-          context: context,
-          redact: state.isLoadingBranchOnObserve || state.branch == null,
-        ),
+          ),
+        ],
       ),
     );
   }
