@@ -17,10 +17,23 @@ Future<String?> getOwnerId() async {
   }
 }
 
-Future<String?> getBranchSettingsId() async {
+Future<String?> getMainBranchId() async {
   final ownerId = await getOwnerId();
-  if (ownerId == null) return null; 
-  print('ownerId: $ownerId');
+  if (ownerId == null) return null;
+
+  try {
+    final response = await supabase.from('branches').select('id').eq('owner_id', ownerId).eq('is_main_branch', true).single();
+
+    return response['id'];
+  } catch (e) {
+    logger.e(e);
+    return null;
+  }
+}
+
+Future<String?> getMainBranchSettingsId() async {
+  final ownerId = await getOwnerId();
+  if (ownerId == null) return null;
 
   try {
     final response = await supabase.from('branches').select('settings_id').eq('owner_id', ownerId).eq('is_main_branch', true).single();

@@ -55,7 +55,7 @@ class _BranchesOverviewScreenState extends State<BranchesOverviewScreen> with Au
         child: Scaffold(
           drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
-            title: Text(context.l10n.branches_overview_title),
+            title: MyAppBarTitle(title: context.l10n.branches_overview_title),
             actions: [
               IconButton(
                 onPressed: () => _branchesOverviewBloc.add(GetBranchesEvent()),

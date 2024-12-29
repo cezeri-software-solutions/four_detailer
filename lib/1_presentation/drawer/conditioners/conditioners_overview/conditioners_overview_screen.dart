@@ -50,7 +50,7 @@ class _ConditionersOverviewScreenState extends State<ConditionersOverviewScreen>
         child: Scaffold(
           drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
-            title: Text(context.l10n.conditioners_overview_title),
+            title: MyAppBarTitle(title: context.l10n.conditioners_overview_title),
             actions: [
               IconButton(
                 onPressed: () => _conditionersOverviewBloc.add(GetConditionersEvent()),

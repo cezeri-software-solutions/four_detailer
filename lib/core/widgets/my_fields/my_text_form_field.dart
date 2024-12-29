@@ -24,6 +24,7 @@ class MyTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
   final int? maxLines;
+  final int? minLines;
   final Widget? prefix;
   final Widget? prefixIcon;
   final String? prefixText;
@@ -58,6 +59,7 @@ class MyTextFormField extends StatelessWidget {
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
     this.maxLines = 1,
+    this.minLines,
     this.prefix,
     this.prefixIcon,
     this.prefixText,
@@ -87,6 +89,7 @@ class MyTextFormField extends StatelessWidget {
           width: maxWidth,
           height: addPlaceholderForError ? 55 : null,
           child: TextFormField(
+            minLines: minLines,
             textAlign: textAlign!,
             controller: controller,
             initialValue: initialValue,

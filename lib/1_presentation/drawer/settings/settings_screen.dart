@@ -57,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> with AutomaticKeepAlive
         child: Scaffold(
           drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
-            title: Text(context.l10n.settings_title),
+            title: MyAppBarTitle(title: context.l10n.settings_title),
             actions: [
               IconButton(
                 onPressed: () => _settingsBloc.add(LoadSettingsEvent()),

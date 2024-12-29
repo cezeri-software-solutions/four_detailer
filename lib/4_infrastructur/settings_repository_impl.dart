@@ -16,13 +16,11 @@ class SettingsRepositoryImpl implements SettingsRepository {
   @override
   Future<Either<AbstractFailure, MainSettings>> getSettings() async {
     if (!await checkInternetConnection()) throw NoConnectionFailure();
-    final branchSettingsId = await getBranchSettingsId();
+    final branchSettingsId = await getMainBranchSettingsId();
     if (branchSettingsId == null) throw GeneralFailure(message: 'Die Einstellungen konnten nicht aus der Datenbank geladen werden');
 
     try {
       final response = await supabase.rpc('get_main_settings', params: {'settings_id': branchSettingsId});
-
-      print('response: $response');
 
       final settings = MainSettings.fromJson(response);
 
@@ -42,8 +40,6 @@ class SettingsRepositoryImpl implements SettingsRepository {
 
     try {
       final response = await supabase.rpc('update_main_settings', params: {'settings_json': settings.toJson()});
-
-      print('response: $response');
 
       final updatedSettings = MainSettings.fromJson(response);
 

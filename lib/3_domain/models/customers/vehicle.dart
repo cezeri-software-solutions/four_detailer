@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '/core/core.dart';
-import 'models.dart';
+import '../models.dart';
 
 part 'vehicle.g.dart';
 
