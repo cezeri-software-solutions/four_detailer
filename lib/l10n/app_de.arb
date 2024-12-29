@@ -13,18 +13,15 @@
   "save": "Speichern",
   "edit": "Bearbeiten",
   "other": "Sonstiges",
-
   "gender": "Geschlecht",
   "gender_male": "Herr",
   "gender_female": "Frau",
-
   "company": "Firmenname",
   "firstName": "Vorname",
   "lastName": "Nachname",
   "tel1": "Telefon 1",
   "tel2": "Telefon 2",
   "homepage": "Webseite",
-
   "phone": "Telefon",
   "street": "Straße & Hausnummer",
   "city": "Stadt",
@@ -32,33 +29,25 @@
   "zip": "PLZ",
   "country": "Land",
   "select_country": "Land auswählen",
-
   "currency": "Währung",
   "tax": "Steuer",
   "taxNumber": "Steuernummer",
   "tax_abbreviated": "MwSt.",
-
   "mandatory": "Pflichtfeld",
-
   "error_on_load_countries": "Beim Laden der Länder ist ein Fehler aufgetreten.",
-
   "my_image_source_camera": "Kamera",
   "my_image_source_gallery": "Galerie",
   "my_image_source_file": "Datei",
   "my_image_source_display": "Anzeigen",
   "my_image_source_edit": "Bearbeiten",
   "my_image_source_delete": "Löschen",
-
   "enum_customerStatus_prospect": "Interessent",
   "enum_customerStatus_customer": "Kunde",
-
   "enum_customerType_private": "Privat",
   "enum_customerType_business": "Gewerblich",
-
   "enum_serviceType_stationary": "Stationär",
   "enum_serviceType_mobile": "Mobil",
   "enum_serviceType_both": "Stationär & Mobile",
-
   "enum_fuelType_petrol": "Benzin",
   "enum_fuelType_diesel": "Diesel",
   "enum_fuelType_electric": "Elektro",
@@ -66,7 +55,6 @@
   "enum_fuelType_pluginHybrid": "Plug-in Hybrid",
   "enum_fuelType_lpg": "LPG",
   "enum_fuelType_cng": "CNG",
-
   "enum_bodyType_motorcycle": "Motorrad",
   "enum_bodyType_compact": "Kleinwagen",
   "enum_bodyType_sedan": "Limousine",
@@ -76,18 +64,14 @@
   "enum_bodyType_suv": "SUV / Geländewagen / Pickup",
   "enum_bodyType_van": "Van / Kleinbus",
   "enum_bodyType_transporter": "Transporter",
-
   "auth_failure_onDefaultFailure": "Ein unerwarteter Fehler ist aufgetreten.\nKontaktiere den Kundendienst.",
   "auth_failure_wrongEmailOrPasswordFailure": "Die eingegebene E-Mail-Adresse oder das Passwort ist nicht korrekt.\nBitte überprüfe deine Eingaben und versuchen es erneut.",
   "auth_failure_emailNotConfirmedFailure": "Verifiziere bitte deine E-Mail, indem du auf den Link in deiner E-Mail klickst, den du von uns erhalten hast",
-
   "my_dialog_notImplementedYet": "Diese Funktion ist noch nicht implementiert",
   "my_dialog_confirmDeleteContent": "Bist du sicher, dass du es unwiederruflich löschen willst?",
-
   "sign_in_welcome": "Willkommen bei",
   "sign_in_forgotPassword": "Passwort vergessen?",
   "sign_in_noAccountYet": "Noch keinen Account?",
-
   "sign_up_congratulations": "Glückwunsch",
   "sign_up_checkEmail": "Herzlichen Glückwunsch zur erfolgreichen Registrierung in unserer App!\n\nBitte überprüfe dein E-Mail-Postfach und klicke auf den Bestätigungslink, den wir dir geschickt haben.\nEs kann vorkommen, dass die E-Mail im Spam-Ordner landet, daher schaue bitte auch dort nach.",
   "sign_up_content": "Erstelle jetzt dein Konto und entdecke alle Funktionen von 4Detailer.\nKonzentriere dich auf dein Kerngeschäft, vermeide Chaos und bringe deine Aufbereitung auf das nächste Level.",
@@ -95,33 +79,27 @@
   "sign_up_alreadyHaveAccount": "Schon registriert?",
   "sign_up_backToSignIn": "Anmelden",
   "sign_up_passwordsDontMatch": "Die eingegebenen Passwörter stimmen nicht überein. Bitte überprüfe deine Eingaben und versuche es erneut.",
-
   "user_data_needInformation": "braucht nur noch ein paar wenige Daten von dir und du kannst loslegen!",
   "user_data_mandatoryFields": "Folgende Felder sind Pflichtfelder und müssen ausgefüllt werden!",
   "user_data_companyTitle": "Unternehmensdaten:",
   "user_data_taxDataTitle": "Steuerdaten für Rechnungen:",
   "user_data_isSmallBusiness": "Kleinunternehmerregelung?",
   "user_data_loadingText": "Deine Daten werden erstellt...",
-
   "defaultCashRegisterName": "Kasse",
   "defaultCashRegisterShortName": "Bar",
   "defaultPaymentMethodName": "Barzahlung",
   "defaultPaymentMethodShortName": "Bar",
-
   "app_drawer_homepage": "Startseite",
   "app_drawer_customers": "Kunden",
   "app_drawer_employees": "Mitarbeiter",
   "app_drawer_branches": "Filialen",
   "app_drawer_settings": "Einstellungen",
   "app_drawer_signOut": "Abmelden",
-
   "conditioners_overview_title": "Mitarbeiter",
-
   "conditioner_detail_showProfile": "Profil anzeigen",
   "conditioner_detail_editProfileImage": "Profilbild bearbeiten",
   "conditioner_detail_deleteProfileImage": "Profilbild löschen",
   "conditioner_detail_removeProfileImageMessage": "Willst du dein Profilbild wirklich löschen?",
-
   "customers_overview_title": "Kunden",
   "customers_overview_emptyTitle": "Keine Kunden gefunden",
   "customers_overview_delete_customers_success": "Kunde/n erfolgreich gelöscht",
@@ -133,11 +111,9 @@
       }
     }
   },
-
   "customer_detail_title": "Neuer Kunde",
   "customer_detail_companyNameIsMandatory": "Der Firmenname ist bei Gewerbekunden ein Pflichtfeld.\nBitte gib zuerst den Firmenname ein um deine Änderungen speichern zu können.",
   "customer_detail_lastNameIsMandatory": "Der Nachname ist bei Privatkunden ein Pflichtfeld.\nBitte gib zuerst den Nachname ein um deine Änderungen speichern zu können.",
-
   "customer_detail_updateSuccess": "Kunde erfolgreich aktualisiert",
   "customer_detail_customerName": "Kundenname",
   "customer_detail_customerStatus": "Kundenstatus",
@@ -146,12 +122,10 @@
   "customer_detail_uidNumber": "UID-Nummer",
   "customer_detail_address": "Adresse",
   "customer_detail_validationMessage": "Kundenname und E-Mail sind Pflichtfelder",
-  
   "customer_detail_customerData": "Kundendaten",
   "customer_detail_vehicles": "Kundenfahrzeuge",
   "customer_detail_addVehicle": "Fahrzeug hinzufügen",
   "customer_detail_contactData": "Kontaktdaten",
-
   "customer_detail_newVehicle": "Neues Fahrzeug",
   "customer_detail_editVehicle": "Fahrzeug bearbeiten",
   "customer_detail_vehicleBrand": "Marke",
@@ -170,9 +144,104 @@
   "customer_detail_vehicleFuelType": "Kraftstoffart",
   "customer_detail_vehicleBodyType": "Karosserieform",
   "customer_detail_vehicleBrandIsMandatory": "Die Fahrzeugmarke ist ein Pflichtfeld.\nBitte gib zuerst die Marke ein um deine Änderungen speichern zu können.",
-
+  "categories_overview_title": "Kategorien",
+  "categories_overview_emptyList": "Keine Kategorien vorhanden",
+  "categories_overview_createCategory": "Neue Kategorie",
+  "categories_overview_editCategory": "Kategorie bearbeiten",
+  "categories_overview_categoryTitle": "Titel",
+  "categories_overview_categoryDescription": "Beschreibung",
+  "categories_overview_loadingOnUpdate": "Kategorie wird aktualisiert...",
+  "template_services_overview_title": "{type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} todo{Todo`s} other{Todo`s}}",
+  "@template_services_overview_title": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_emptyList": "Keine Vorlagen für {type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} todo{Todo`s} other{Todo`s}} vorhanden",
+  "@template_services_overview_emptyList": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_createTemplateServiceInfoText": "Dies ist eine Vorlage.\n{type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} todo{Todo`s} other{Todo`s}} können nach dem Erstellen dieser Vorlage individuell hinzugefügt werden.\nDie Vorlage kann anschließend direkt bei der Erstellung von Dienstleistungen verwendet werden.",
+  "@template_services_overview_createTemplateServiceInfoText": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_createTemplateServiceTitle": "Neue {type, select, vehicleSize{Fahrzeuggrößen-Vorlage} contaminationLevel{Verschmutzungsgrade-Vorlage} todo{Todo`s-Vorlage} other{Todo`s-Vorlage}}",
+  "@template_services_overview_createTemplateServiceTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_editTemplateServiceTitle": "{type, select, vehicleSize{Fahrzeuggrößen-Vorlage} contaminationLevel{Verschmutzungsgrade-Vorlage} todo{Todo`s-Vorlage} other{Todo`s-Vorlage}} bearbeiten",
+  "@template_services_overview_editTemplateServiceTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_templateServiceName": "Name",
+  "template_services_overview_templateServiceDescription": "Beschreibung",
+  "template_services_overview_loadingOnUpdate": "{type, select, vehicleSize{Fahrzeuggröße} contaminationLevel{Verschmutzungsgrad} todo{Todo} other{Todo}} wird aktualisiert...",
+  "@template_services_overview_loadingOnUpdate": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_addTemplateService": "{type, select, vehicleSize{Neue Fahrzeuggröße} contaminationLevel{Neuen Verschmutzungsgrad} todo{Neue Todo} other{Neues Todo}} hinzufügen",
+  "@template_services_overview_addTemplateService": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_createTemplateServiceItemTitle": "{type, select, vehicleSize{Neue Fahrzeuggröße} contaminationLevel{Neuer Verschmutzungsgrad} todo{Neue Todo} other{Neue Todo}}",
+  "@template_services_overview_createTemplateServiceItemTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_editTemplateServiceItemTitle": "{type, select, vehicleSize{Fahrzeuggröße} contaminationLevel{Verschmutzungsgrad} todo{Todo} other{Todo}} bearbeiten",
+  "@template_services_overview_editTemplateServiceItemTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_loadingOnDelete": "{type, select, vehicleSize{Fahrzeuggrößen-Vorlage} contaminationLevel{Verschmutzungsgrade-Vorlage} todo{Todo`s-Vorlage} other{Todo`s-Vorlage}} wird gelöscht...",
+  "@template_services_overview_loadingOnDelete": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "template_services_overview_loadingOnDeleteItem": "{type, select, vehicleSize{Fahrzeuggröße} contaminationLevel{Verschmutzungsgrad} todo{Todo} other{Todo}} wird gelöscht...",
+  "@template_services_overview_loadingOnDeleteItem": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
   "branches_overview_title": "Filialen",
-
   "branch_detail_updateSuccess": "Filiale erfolgreich aktualisiert",
   "branch_detail_branchName": "Filialname",
   "branch_detail_serviceType": "Servicetyp",
@@ -183,33 +252,28 @@
   "branch_detail_commercialRegister": "Handelsregister",
   "branch_detail_address": "Adresse",
   "branch_detail_validationMessage": "Filialname und E-Mail sind Pflichtfelder",
-
   "settings_title": "Einstellungen",
   "settings_basic": "Grundeinstellungen",
   "settings_smallBusiness": "Kleinunternehmer",
   "settings_taxPercent": "Mehrwertsteuer (%)",
   "settings_paymentDeadline": "Zahlungsfrist (Tage)",
-  
   "settings_bank": "Bankdaten",
   "settings_bankName": "Bank",
   "settings_accountHolder": "Kontoinhaber",
   "settings_iban": "IBAN",
   "settings_bic": "BIC",
   "settings_paypal": "PayPal E-Mail",
-
   "settings_documentPrefixes": "Dokumentpräfixe",
   "settings_prefixOffer": "Angebot",
   "settings_prefixAppointment": "Auftrag",
   "settings_prefixInvoice": "Rechnung",
   "settings_prefixCredit": "Gutschrift",
   "settings_prefixIncomingInvoice": "Eingangsrechnung",
-
   "settings_documentTexts": "Dokumenttexte",
   "settings_textOffer": "Angebotstext",
   "settings_textAppointment": "Auftragstext",
   "settings_textInvoice": "Rechnungstext",
   "settings_textCredit": "Gutschrifttext",
-
   "settings_numberCounters": "Nummernzähler",
   "settings_counterNextOffer": "Nächste Angebotsnummer",
   "settings_counterNextAppointment": "Nächste Auftragsnummer",

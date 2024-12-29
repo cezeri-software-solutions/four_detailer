@@ -277,7 +277,6 @@ class _BranchDetailEditState extends State<BranchDetailEdit> {
     }
 
     final branch = await _genBranch();
-    print(branch.serviceType);
     widget.branchDetailBloc.add(UpdateBranchEvent(branch: branch));
   }
 

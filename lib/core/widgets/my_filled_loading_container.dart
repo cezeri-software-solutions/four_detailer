@@ -9,7 +9,7 @@ class MyFilledLoadingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned.fill(
       child: Container(
-        decoration: BoxDecoration(color: context.colorScheme.scrim.withOpacity(0.5), borderRadius: BorderRadius.circular(14)),
+        decoration: BoxDecoration(color: context.colorScheme.scrim.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(14)),
         child: Center(
           child: Container(
             height: 140,

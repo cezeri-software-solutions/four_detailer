@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '/3_domain/models/vehicle.dart';
 import '/3_domain/repositories/database_repository.dart';
 import '/constants.dart';
 import '/core/core.dart';
+import '../../../../../3_domain/models/customers/vehicle.dart';
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override

@@ -70,11 +70,7 @@ class _CustomersOverviewScreenState extends State<CustomersOverviewScreen> with 
             return Scaffold(
               drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
               appBar: AppBar(
-                centerTitle: false,
-                title: Padding(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: Text(context.l10n.customers_overview_title),
-                ),
+                title: MyAppBarTitle(title: context.l10n.customers_overview_title),
                 actions: [
                   if (!context.breakpoint.isMobile)
                     _CustomerSearchField(

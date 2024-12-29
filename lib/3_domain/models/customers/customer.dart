@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '/core/core.dart';
-import 'models.dart';
+import '../models.dart';
 
 part 'customer.g.dart';
 

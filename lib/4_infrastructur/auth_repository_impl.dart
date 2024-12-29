@@ -127,8 +127,6 @@ class AuthRepositoryImpl implements AuthRepository {
       //   'owner_id': getCurrentUserId(),
       // });
 
-      print('OLDUUUUUU');
-
       return const Right(unit);
     } on PostgrestException catch (e) {
       logger.e(e.message);

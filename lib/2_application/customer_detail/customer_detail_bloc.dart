@@ -145,8 +145,6 @@ class CustomerDetailBloc extends Bloc<CustomerDetailEvent, CustomerDetailState> 
       );
     }
 
-    print(listOfVehicles.length);
-
     emit(state.copyWith(
       customer: state.customer!.copyWith(vehicles: listOfVehicles),
       resetEditVehicle: true,
