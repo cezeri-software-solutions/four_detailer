@@ -2,12 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../2_application/auth/auth_bloc.dart';
-import '../../../../2_application/conditioners_overview/conditioners_overview_bloc.dart';
-import '../../../../core/core.dart';
-import '../../../../injection.dart';
-import '../../../../routes/router.gr.dart';
+import '/2_application/auth/auth_bloc.dart';
+import '/2_application/conditioners_overview/conditioners_overview_bloc.dart';
+import '/core/core.dart';
+import '/injection.dart';
+import '/routes/router.gr.dart';
 import 'conditioners_overview_page.dart';
+import 'widgets/add_new_conditioner.dart';
 
 @RoutePage()
 class ConditionersOverviewScreen extends StatefulWidget {
@@ -55,6 +56,9 @@ class _ConditionersOverviewScreenState extends State<ConditionersOverviewScreen>
               IconButton(
                 onPressed: () => _conditionersOverviewBloc.add(GetConditionersEvent()),
                 icon: const Icon(Icons.refresh),
+              ),
+              MyAppBarActionAddButton(
+                onPressed: () => showAddNewConditionerSheet(context: context, conditionersOverviewBloc: _conditionersOverviewBloc),
               ),
             ],
           ),

@@ -62,9 +62,7 @@ class _ConditionerTile extends StatelessWidget {
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () => context.router.push(ConditionerDetailRoute(conditionerId: conditioner.id)),
@@ -89,6 +87,7 @@ class _ConditionerTile extends StatelessWidget {
                             '${conditioner.address.street}, ${conditioner.address.postalCode} ${conditioner.address.city}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: context.colorScheme.outline),
                           ),
                         ),
                       ],
@@ -99,7 +98,7 @@ class _ConditionerTile extends StatelessWidget {
                         children: [
                           const Icon(Icons.phone_outlined, size: 16),
                           Gaps.w4,
-                          Text(conditioner.tel1),
+                          Text(conditioner.tel1, style: TextStyle(color: context.colorScheme.outline)),
                         ],
                       ),
                     ],

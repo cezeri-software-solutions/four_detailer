@@ -7,6 +7,12 @@ class SetConditionerStateToInitialEvnet extends ConditionerDetailEvent {}
 
 class GetCurrentConditionerEvent extends ConditionerDetailEvent {}
 
+class GetConditionerEvent extends ConditionerDetailEvent {
+  final String conditionerId;
+
+  GetConditionerEvent({required this.conditionerId});
+}
+
 class UpdatetConditionerEvent extends ConditionerDetailEvent {
   final Conditioner conditioner;
 

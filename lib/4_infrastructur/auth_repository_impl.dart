@@ -113,7 +113,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (!await checkInternetConnection()) return Left(NoConnectionFailure());
 
     try {
-      await supabase.rpc('create_new_conditioner_on_sign_up', params: {
+      await supabase.rpc('sign_up_new_conditioner', params: {
         'p_id': getCurrentUserId(),
         'conditioner_json': conditioner.toJson(),
         'settings_json': settings.toJson(),
@@ -121,11 +121,6 @@ class AuthRepositoryImpl implements AuthRepository {
         'cash_register_json': cashRegister.toJson(),
         'payment_method_json': paymentMethod.toJson(),
       });
-
-      // await supabase.rpc('create_conditioner', params: {
-      //   'conditioner_json':  conditioner.toJson(),
-      //   'owner_id': getCurrentUserId(),
-      // });
 
       return const Right(unit);
     } on PostgrestException catch (e) {

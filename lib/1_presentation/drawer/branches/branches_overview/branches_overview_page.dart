@@ -89,6 +89,7 @@ class _BranchTile extends StatelessWidget {
                             '${branch.address.street}, ${branch.address.postalCode} ${branch.address.city}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: context.colorScheme.outline),
                           ),
                         ),
                       ],
@@ -99,7 +100,7 @@ class _BranchTile extends StatelessWidget {
                         children: [
                           const Icon(Icons.phone_outlined, size: 16),
                           Gaps.w4,
-                          Text(branch.tel1),
+                          Text(branch.tel1, style: TextStyle(color: context.colorScheme.outline)),
                         ],
                       ),
                     ],
