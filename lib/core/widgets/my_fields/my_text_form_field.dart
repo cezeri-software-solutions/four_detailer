@@ -23,6 +23,7 @@ class MyTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
+  final bool obscureText;
   final int? maxLines;
   final int? minLines;
   final Widget? prefix;
@@ -58,6 +59,7 @@ class MyTextFormField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
+    this.obscureText = false,
     this.maxLines = 1,
     this.minLines,
     this.prefix,
@@ -102,6 +104,7 @@ class MyTextFormField extends StatelessWidget {
             textCapitalization: textCapitalization,
             maxLines: maxLines,
             textInputAction: textInputAction,
+            obscureText: obscureText,
             inputFormatters: inputFormatters ??
                 switch (inputType) {
                   FieldInputType.integer => [IntegerInputFormatter()],

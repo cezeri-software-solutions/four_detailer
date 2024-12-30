@@ -14,25 +14,39 @@ class ConditionerRepositoryImpl implements ConditionerRepository {
   const ConditionerRepositoryImpl({required this.supabase});
 
   @override
-  Future<Either<AbstractFailure, Unit>> createConditionerOnSignUp(Conditioner conditioner) async {
+  Future<Either<AbstractFailure, Unit>> createNewConditioner(Conditioner conditioner, String password) async {
     if (!await checkInternetConnection()) return left(NoConnectionFailure());
+    final ownerId = await getOwnerId();
+    if (ownerId == null) return Left(GeneralFailure(message: 'Dein User konnte nicht aus der Datenbank geladen werden'));
 
-    final currentUserUid = supabase.auth.currentUser!.id;
-
-    final newClient = conditioner.copyWith(id: currentUserUid, ownerId: currentUserUid);
-    final newSettings = MainSettings.empty();
-    final settingsJson = newSettings.toJson();
-    settingsJson.remove('id');
+    final email = conditioner.email.trim();
+    final pw = password.trim();
 
     try {
-      await supabase.from('conditoners').insert(newClient.toJson());
+      final conditionerData = {
+        ...conditioner.toJson(),
+        'owner_id': ownerId,
+        'id': null,
+      };
 
-      await supabase.from('settings').insert(newSettings.toJson());
+      final response = await supabase.functions.invoke(
+        'createNewEmployee',
+        body: {
+          'email': email,
+          'password': pw,
+          'conditionerData': conditionerData,
+        },
+      );
+
+      if (response.status != 200) {
+        final error = response.data['error'] as String;
+        return Left(GeneralFailure(message: error));
+      }
 
       return const Right(unit);
     } catch (e) {
       logger.e(e);
-      return Left(GeneralFailure(message: 'Beim Erstellen der Userdaten oder den Einstellungen ist ein Fehler aufgetreten.'));
+      return Left(GeneralFailure(message: 'Beim Erstellen des Aufbereiters ist ein Fehler aufgetreten. Error: $e'));
     }
   }
 

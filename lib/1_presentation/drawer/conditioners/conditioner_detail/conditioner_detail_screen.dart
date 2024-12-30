@@ -27,7 +27,7 @@ class _ConditionerDetailScreenState extends State<ConditionerDetailScreen> with 
     super.initState();
 
     _conditionerDetailBloc = sl<ConditionerDetailBloc>();
-    _conditionerDetailBloc.add(GetCurrentConditionerEvent());
+    _conditionerDetailBloc.add(GetConditionerEvent(conditionerId: widget.conditionerId));
   }
 
   @override
@@ -70,12 +70,13 @@ class _ConditionerDetailScreenState extends State<ConditionerDetailScreen> with 
           ),
         ],
         child: Scaffold(
+          drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
           appBar: AppBar(
             actions: [
               IconButton(onPressed: () => _conditionerDetailBloc.add(GetCurrentConditionerEvent()), icon: const Icon(Icons.refresh)),
             ],
           ),
-          body: ConditionerDetailPage(conditionerDetailBloc: _conditionerDetailBloc),
+          body: SafeArea(child: ConditionerDetailPage(conditionerDetailBloc: _conditionerDetailBloc)),
         ),
       ),
     );

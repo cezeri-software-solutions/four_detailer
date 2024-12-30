@@ -27,6 +27,7 @@ class ConditionerDetailBloc extends Bloc<ConditionerDetailEvent, ConditionerDeta
         super(ConditionerDetailState.initial()) {
     on<SetConditionerStateToInitialEvnet>(_onSetConditionerStateToInitial);
     on<GetCurrentConditionerEvent>(_onGetCurrentConditioner);
+    on<GetConditionerEvent>(_onGetConditioner);
     on<UpdatetConditionerEvent>(_onUpdatetConditioner);
     on<ShowImageEditingChangedEvent>(_onShowImageEditingChanged);
     on<IsEditModeChangedEvent>(_onisInEditModeChanged);
@@ -43,6 +44,19 @@ class ConditionerDetailBloc extends Bloc<ConditionerDetailEvent, ConditionerDeta
     emit(state.copyWith(isLoadingConditionerOnObserve: true));
 
     final fos = await _conditionerRepository.getCurConditioner();
+    fos.fold(
+      (failure) => emit(state.copyWith(failure: failure)),
+      (conditioner) => emit(state.copyWith(conditioner: conditioner, resetFailure: true)),
+    );
+
+    emit(state.copyWith(isLoadingConditionerOnObserve: false, fosConditionerOnObserveOption: optionOf(fos)));
+    emit(state.copyWith(fosConditionerOnObserveOption: none()));
+  }
+
+  void _onGetConditioner(GetConditionerEvent event, Emitter<ConditionerDetailState> emit) async {
+    emit(state.copyWith(isLoadingConditionerOnObserve: true));
+
+    final fos = await _conditionerRepository.getConditionerById(event.conditionerId);
     fos.fold(
       (failure) => emit(state.copyWith(failure: failure)),
       (conditioner) => emit(state.copyWith(conditioner: conditioner, resetFailure: true)),

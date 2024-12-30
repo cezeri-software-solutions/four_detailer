@@ -28,50 +28,77 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   void initState() {
     super.initState();
+    
     _loadConditioner();
   }
 
   @override
   Widget build(BuildContext context) {
-    void navigateToRoute(PageRouteInfo route) {
-      if (widget.isPersistent) {
-        context.router.current.name == route.routeName ? null : context.router.replaceAll([route]);
-        setState(() {});
-      } else {
-        if (context.router.current.name != route.routeName) context.router.replaceAll([route]);
-        context.pop(); // Schließt den Drawer
-      }
+    if (widget.isPersistent) {
+      return Container(
+        decoration: BoxDecoration(border: Border(right: BorderSide(color: context.colorScheme.surfaceContainerHighest))),
+        child: _AppDrawerContent(navigateToRoute: navigateToRoute, conditioner: _conditioner),
+      );
     }
 
-    final drawerContent = SafeArea(
+    return Drawer(child: _AppDrawerContent(navigateToRoute: navigateToRoute, conditioner: _conditioner));
+  }
+
+  void navigateToRoute(PageRouteInfo route) {
+    if (widget.isPersistent) {
+      context.router.current.name == route.routeName ? null : context.router.replaceAll([route]);
+      setState(() {});
+    } else {
+      if (context.router.current.name != route.routeName) context.router.replaceAll([route]);
+      context.pop(); // Schließt den Drawer
+    }
+  }
+
+  void _loadConditioner() async {
+    final repo = GetIt.I<ConditionerRepository>();
+    final fos = await repo.getCurConditioner();
+    if (fos.isLeft()) return;
+    setState(() => _conditioner = fos.getRight());
+  }
+}
+
+class _AppDrawerContent extends StatelessWidget {
+  final void Function(PageRouteInfo route) navigateToRoute;
+  final Conditioner? conditioner;
+
+  const _AppDrawerContent({required this.navigateToRoute, required this.conditioner});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
       child: Column(
         children: [
           Gaps.h16,
           Column(
             children: [
               MyAvatar(
-                name: _conditioner != null ? _conditioner!.name : '',
-                imageUrl: _conditioner?.imageUrl,
+                name: conditioner != null ? conditioner!.name : '',
+                imageUrl: conditioner?.imageUrl,
                 radius: 50,
                 fontSize: 32,
-                onTap: () => navigateToRoute(ConditionerDetailRoute(conditionerId: _conditioner!.id)),
+                onTap: () => navigateToRoute(ConditionerDetailRoute(conditionerId: conditioner!.id)),
               ),
               Gaps.h12,
               Text(
-                _conditioner != null ? _conditioner!.name : '',
+                conditioner != null ? conditioner!.name : '',
                 style: context.textTheme.titleLarge,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               Gaps.h4,
               Text(
-                _conditioner != null ? _conditioner!.email : '',
+                conditioner != null ? conditioner!.email : '',
                 style: context.textTheme.titleMedium,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
-          ).redacted(context: context, redact: _conditioner == null, configuration: RedactedConfiguration(autoFillText: 'Vorname Nachname')),
+          ).redacted(context: context, redact: conditioner == null, configuration: RedactedConfiguration(autoFillText: 'Vorname Nachname')),
           Gaps.h12,
           Expanded(
             child: SingleChildScrollView(
@@ -173,23 +200,5 @@ class _AppDrawerState extends State<AppDrawer> {
         ],
       ),
     );
-
-    if (widget.isPersistent) {
-      return Container(
-        decoration: BoxDecoration(
-          border: Border(right: BorderSide(color: context.colorScheme.surfaceContainerHighest)),
-        ),
-        child: drawerContent,
-      );
-    }
-
-    return Drawer(child: drawerContent);
-  }
-
-  void _loadConditioner() async {
-    final repo = GetIt.I<ConditionerRepository>();
-    final fos = await repo.getCurConditioner();
-    if (fos.isLeft()) return;
-    setState(() => _conditioner = fos.getRight());
   }
 }

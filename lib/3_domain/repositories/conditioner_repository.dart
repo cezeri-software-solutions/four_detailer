@@ -4,7 +4,7 @@ import '../../failures/failures.dart';
 import '../models/models.dart';
 
 abstract class ConditionerRepository {
-  Future<Either<AbstractFailure, Unit>> createConditionerOnSignUp(Conditioner conditioner);
+  Future<Either<AbstractFailure, Unit>> createNewConditioner(Conditioner conditioner, String password);
   Future<Either<AbstractFailure, List<Conditioner>>> getConditioners();
   Future<Either<AbstractFailure, Conditioner>> getCurConditioner();
   Future<Either<AbstractFailure, Conditioner>> getConditionerById(String id);

@@ -17,6 +17,7 @@ class ConditionersOverviewBloc extends Bloc<ConditionersOverviewEvent, Condition
         super(ConditionersOverviewState.initial()) {
     on<SetConditionersStateToInitialEvent>(_onSetConditionersStateToInitial);
     on<GetConditionersEvent>(_onGetConditioners);
+    on<CreateNewConditionerEvent>(_onCreateNewConditioner);
   }
 
   void _onSetConditionersStateToInitial(SetConditionersStateToInitialEvent event, Emitter<ConditionersOverviewState> emit) {
@@ -24,7 +25,7 @@ class ConditionersOverviewBloc extends Bloc<ConditionersOverviewEvent, Condition
   }
 
   void _onGetConditioners(GetConditionersEvent event, Emitter<ConditionersOverviewState> emit) async {
-    emit(state.copyWith(isLoadingConditioners: true));
+    if (event.isLoading) emit(state.copyWith(isLoadingConditioners: true));
 
     final fos = await _conditionerRepository.getConditioners();
     fos.fold(
@@ -34,5 +35,20 @@ class ConditionersOverviewBloc extends Bloc<ConditionersOverviewEvent, Condition
 
     emit(state.copyWith(isLoadingConditioners: false, fosConditionersOption: optionOf(fos)));
     emit(state.copyWith(fosConditionersOption: none()));
+  }
+
+  void _onCreateNewConditioner(CreateNewConditionerEvent event, Emitter<ConditionersOverviewState> emit) async {
+    emit(state.copyWith(isLoadingCreateConditioner: true));
+
+    final fos = await _conditionerRepository.createNewConditioner(event.conditioner, event.password);
+    fos.fold(
+      (failure) => emit(state.copyWith(failure: failure)),
+      (unit) {
+        add(GetConditionersEvent(isLoading: false));
+      },
+    );
+
+    emit(state.copyWith(isLoadingCreateConditioner: false, fosCreateConditionerOption: optionOf(fos)));
+    emit(state.copyWith(fosCreateConditionerOption: none()));
   }
 }
