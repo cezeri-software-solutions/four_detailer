@@ -8,7 +8,7 @@ class AppRouter extends RootStackRouter {
   AppRouter() : super();
 
   @override
-  RouteType get defaultRouteType => const RouteType.material();
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
   @override
   List<AutoRoute> get routes => [
@@ -32,6 +32,8 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: ConditionerDetailRoute.page, path: 'conditioner-detail/:conditionerId'),
             AutoRoute(page: BranchesOverviewRoute.page, path: 'branches-overview'),
             AutoRoute(page: BranchDetailRoute.page, path: 'branch-detail/:branchId'),
+            AutoRoute(page: ServicesOverviewRoute.page, path: 'services-overview'),
+            AutoRoute(page: ServiceDetailRoute.page, path: 'service-detail/:serviceId'),
             AutoRoute(page: CategoriesOverviewRoute.page, path: 'categories-overview'),
             AutoRoute(page: TSVehicleSizesOverviewRoute.page, path: 'template-services-vehicle-sizes-overview'),
             AutoRoute(page: TSContaminationLevelsOverviewRoute.page, path: 'template-services-contamination-levels-overview'),
