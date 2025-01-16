@@ -8,6 +8,7 @@ export 'currency.dart';
 export 'customers/customers.dart';
 export 'enums.dart';
 export 'helpers/helpers.dart';
+export 'services/services.dart';
 export 'settings/bank_details.dart';
 export 'settings/document_praefixes.dart';
 export 'settings/document_texts.dart';

@@ -91,7 +91,7 @@ class _AddNewConditionerState extends State<_AddNewConditioner> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
       padding: context.breakpoint.isMobile
           ? EdgeInsets.only(top: _padding, left: _padding, right: _padding, bottom: 106)
           : EdgeInsets.only(top: _padding, left: _padding, right: _padding, bottom: 94),

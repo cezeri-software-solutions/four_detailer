@@ -8,6 +8,7 @@ enum FieldInputType { text, integer, double, email, phone, password }
 
 class MyTextFormField extends StatelessWidget {
   final String? fieldTitle;
+  final String? fieldFooter;
   final bool? isMandatory;
   // final String? labelText; //* Labeltext schaut bei dieser Größe nicht schön aus
   final String? hintText;
@@ -44,6 +45,7 @@ class MyTextFormField extends StatelessWidget {
   const MyTextFormField({
     super.key,
     this.fieldTitle,
+    this.fieldFooter,
     this.isMandatory = false,
     // this.labelText,
     this.hintText,
@@ -149,6 +151,7 @@ class MyTextFormField extends StatelessWidget {
             ),
           ),
         ),
+        if (fieldFooter != null) Text(fieldFooter!, style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline)),
       ],
     );
   }

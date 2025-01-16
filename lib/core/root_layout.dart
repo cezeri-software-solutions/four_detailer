@@ -7,11 +7,7 @@ class RootLayout extends StatelessWidget {
   final Widget child;
   final double breakpoint;
 
-  const RootLayout({
-    super.key,
-    required this.child,
-    this.breakpoint = 800,
-  });
+  const RootLayout({super.key, required this.child, this.breakpoint = 800});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +31,7 @@ class RootLayout extends StatelessWidget {
       ),
       body: SlotLayout(
         config: {
-          Breakpoints.standard: SlotLayout.from(
-            key: const Key('Body'),
-            builder: (_) => child,
-          ),
+          Breakpoints.standard: SlotLayout.from(key: const Key('Body'), builder: (_) => child),
         },
       ),
     );

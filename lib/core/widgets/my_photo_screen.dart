@@ -5,11 +5,11 @@ import 'package:photo_view/photo_view.dart';
 import '/core/core.dart';
 
 @RoutePage()
-class MyPhotoPage extends StatelessWidget {
+class MyPhotoScreen extends StatelessWidget {
   final List<String> urls;
   final int initialIndex;
 
-  const MyPhotoPage({required this.urls, this.initialIndex = 0, super.key});
+  const MyPhotoScreen({required this.urls, this.initialIndex = 0, super.key});
 
   @override
   Widget build(BuildContext context) {

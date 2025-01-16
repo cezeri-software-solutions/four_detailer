@@ -42,37 +42,32 @@ class _CategoriesOverviewContent extends StatelessWidget {
         onRefresh: () async => categoriesOverviewBloc.add(GetCategoriesEvent(calcCount: true, currentPage: state.currentPage)),
         child: ListView(
           children: [
-            ReorderableListView.builder(
-              itemCount: state.listOfCategories!.length,
+            MyReorderableListView(
               padding: EdgeInsets.all(context.breakpoint.isMobile ? 12 : 24),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              proxyDecorator: (child, index, animation) => Material(
-                elevation: 8,
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
-                child: child,
-              ),
+              itemCount: state.listOfCategories!.length,
               onReorder: (oldIndex, newIndex) => categoriesOverviewBloc.add(UpdateCategoryPositionsEvent(newIndex: newIndex, oldIndex: oldIndex)),
               itemBuilder: (context, index) {
                 final category = state.listOfCategories![index];
 
-                return Column(
+                return MyReorderableItem(
                   key: ValueKey(category.id),
-                  children: [
-                    Padding(
-                      padding: index != state.listOfCategories!.length - 1 ? const EdgeInsets.only(bottom: 12) : EdgeInsets.zero,
-                      child: PressableCard(
-                        title: category.title,
-                        description: category.description,
-                        onTap: () => showAddEditCategorySheet(context: context, categoriesOverviewBloc: categoriesOverviewBloc, category: category),
+                  index: index,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: index != state.listOfCategories!.length - 1 ? const EdgeInsets.only(bottom: 12) : EdgeInsets.zero,
+                        child: PressableCard(
+                          title: category.title,
+                          description: category.description,
+                          onTap: () => showAddEditCategorySheet(context: context, categoriesOverviewBloc: categoriesOverviewBloc, category: category),
+                        ),
                       ),
-                    ),
-                    if (state.isLoadingCategoriesOnCreate && index == state.listOfCategories!.length - 1) ...[
-                      Gaps.h12,
-                      const LinearProgressIndicator()
-                    ]
-                  ],
+                      if (state.isLoadingCategoriesOnCreate && index == state.listOfCategories!.length - 1) ...[
+                        Gaps.h12,
+                        const LinearProgressIndicator()
+                      ]
+                    ],
+                  ),
                 );
               },
             ),

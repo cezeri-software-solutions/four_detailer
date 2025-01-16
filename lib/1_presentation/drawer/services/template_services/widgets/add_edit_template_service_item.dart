@@ -58,14 +58,16 @@ void showAddEditTemplateServiceItemSheet({
               }
             }
           },
-          onDelete: () {
-            templateServicesBloc.add(DeleteTemplateServiceItemEvent(templateServiceItemId: templateServiceItem!.id));
-            context.pop();
-            showMyDialogLoadingWolt(
-              context: context,
-              text: context.l10n.template_services_overview_loadingOnDeleteItem(templateService.type.name),
-            );
-          },
+          onDelete: templateServiceItem != null
+              ? () {
+                  templateServicesBloc.add(DeleteTemplateServiceItemEvent(templateServiceItemId: templateServiceItem.id));
+                  context.pop();
+                  showMyDialogLoadingWolt(
+                    context: context,
+                    text: context.l10n.template_services_overview_loadingOnDeleteItem(templateService.type.name),
+                  );
+                }
+              : null,
           infoText: infoText,
         ),
       ];

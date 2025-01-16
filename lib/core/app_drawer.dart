@@ -28,7 +28,7 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   void initState() {
     super.initState();
-    
+
     _loadConditioner();
   }
 
@@ -139,10 +139,12 @@ class _AppDrawerContent extends StatelessWidget {
                       leading: const Icon(Icons.handyman_outlined), // Wrench/tools icon for services
                       childrenPadding: const EdgeInsets.only(left: 20),
                       children: [
-                        const ListTile(
-                          leading: Icon(Icons.cleaning_services_outlined), // Keep cleaning icon
-                          title: Text('Dienstleistungen'),
-                          // onTap: () => navigateToRoute(const SuppliersOverviewRoute()),
+                        ListTile(
+                          selected: context.router.isRouteActive(ServicesOverviewRoute.name),
+                          selectedTileColor: context.colorScheme.surfaceContainerHigh,
+                          leading: const Icon(Icons.cleaning_services_outlined), // Keep cleaning icon
+                          title: const Text('Dienstleistungen'),
+                          onTap: () => navigateToRoute(const ServicesOverviewRoute()),
                         ),
                         ListTile(
                           selected: context.router.isRouteActive(CategoriesOverviewRoute.name),
@@ -185,6 +187,13 @@ class _AppDrawerContent extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          ListTile(
+            selected: context.router.isRouteActive(PurchaceRoute.name),
+            selectedTileColor: context.colorScheme.surfaceContainerHigh,
+            leading: Image.asset('assets/ccf/ccf_logo.png', width: 24, height: 24),
+            title: const Text('CCF-Autopflege'),
+            onTap: () => navigateToRoute(const PurchaceRoute()),
           ),
           const Divider(height: 0),
           ListTile(

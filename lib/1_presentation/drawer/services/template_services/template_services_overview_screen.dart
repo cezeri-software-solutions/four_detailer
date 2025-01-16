@@ -28,7 +28,7 @@ class _TemplateServicesOverviewScreenState extends State<TemplateServicesOvervie
     super.initState();
 
     _templateServicesBloc = sl<TemplateServicesBloc>();
-    _templateServicesBloc.add(SetTemplateServiceTypeEvent(templateServiceType: widget.templateServiceType.toEnum()));
+    _templateServicesBloc.add(SetTemplateServiceTypeEvent(templateServiceType: widget.templateServiceType.toEnumTST()));
     _templateServicesBloc.add(GetTemplateServicesEvent());
   }
 
@@ -70,7 +70,7 @@ class _TemplateServicesOverviewScreenState extends State<TemplateServicesOvervie
           BlocListener<TemplateServicesBloc, TemplateServicesState>(
             listenWhen: (p, c) => p.fosTemplateServicesOnUpdateOption != c.fosTemplateServicesOnUpdateOption,
             listener: (context, state) {
-              context.router.popUntilRouteWithName(switch (widget.templateServiceType.toEnum()) {
+              context.router.popUntilRouteWithName(switch (widget.templateServiceType.toEnumTST()) {
                 TemplateServiceType.vehicleSize => TSVehicleSizesOverviewRoute.name,
                 TemplateServiceType.contaminationLevel => TSContaminationLevelsOverviewRoute.name,
                 TemplateServiceType.todo => TSTodosOverviewRoute.name,
@@ -100,7 +100,7 @@ class _TemplateServicesOverviewScreenState extends State<TemplateServicesOvervie
           BlocListener<TemplateServicesBloc, TemplateServicesState>(
             listenWhen: (p, c) => p.fosTemplateServicesOnDeleteOption != c.fosTemplateServicesOnDeleteOption,
             listener: (context, state) {
-              context.router.popUntilRouteWithName(switch (widget.templateServiceType.toEnum()) {
+              context.router.popUntilRouteWithName(switch (widget.templateServiceType.toEnumTST()) {
                 TemplateServiceType.vehicleSize => TSVehicleSizesOverviewRoute.name,
                 TemplateServiceType.contaminationLevel => TSContaminationLevelsOverviewRoute.name,
                 TemplateServiceType.todo => TSTodosOverviewRoute.name,
@@ -121,7 +121,7 @@ class _TemplateServicesOverviewScreenState extends State<TemplateServicesOvervie
             return Scaffold(
               drawer: context.breakpoint.isMobile ? const AppDrawer() : null,
               appBar: AppBar(
-                title: MyAppBarTitle(title: context.l10n.template_services_overview_title(widget.templateServiceType.toEnum().name)),
+                title: MyAppBarTitle(title: context.l10n.template_services_overview_title(widget.templateServiceType.toEnumTST().name)),
                 actions: [
                   IconButton(
                     onPressed: () => _templateServicesBloc.add(GetTemplateServicesEvent()),
@@ -131,7 +131,7 @@ class _TemplateServicesOverviewScreenState extends State<TemplateServicesOvervie
                     onPressed: () => showAddEditTemplateServiceSheet(
                       context: context,
                       templateServicesBloc: _templateServicesBloc,
-                      templateServiceType: widget.templateServiceType.toEnum(),
+                      templateServiceType: widget.templateServiceType.toEnumTST(),
                       infoText: context.l10n.template_services_overview_createTemplateServiceInfoText(widget.templateServiceType),
                     ),
                   ),

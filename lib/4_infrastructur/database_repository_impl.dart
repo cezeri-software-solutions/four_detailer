@@ -6,6 +6,7 @@ import '../3_domain/models/models.dart';
 import '../3_domain/repositories/database_repository.dart';
 import '../constants.dart';
 import '../core/core.dart';
+import 'functions/functions.dart';
 
 class DatabaseRepositoryImpl implements DatabaseRepository {
   final SupabaseClient supabase;
@@ -52,6 +53,20 @@ class DatabaseRepositoryImpl implements DatabaseRepository {
       final listOfCurrencies = response.map((e) => Currency.fromJson(e)).toList();
 
       return Right(listOfCurrencies);
+    } on PostgrestException catch (e) {
+      logger.e(e.message);
+      return Left(GeneralFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<AbstractFailure, Currency>> getCurrencyById(String id) async {
+    if (!await checkInternetConnection()) return Left(NoConnectionFailure());
+
+    try {
+      final response = await supabase.from('currencies').select().eq('id', id).single();
+
+      return Right(Currency.fromJson(response));
     } on PostgrestException catch (e) {
       logger.e(e.message);
       return Left(GeneralFailure(message: e.message));
@@ -113,6 +128,32 @@ class DatabaseRepositoryImpl implements DatabaseRepository {
     } on PostgrestException catch (e) {
       logger.e(e.message);
       return Left(GeneralFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<AbstractFailure, ({double tax, Currency currency})>> getTaxAndCurrencyFromSettings() async {
+    if (!await checkInternetConnection()) return Left(NoConnectionFailure());
+
+    try {
+      final settingsId = await getMainBranchSettingsId();
+      if (settingsId == null) return Left(GeneralFailure(message: 'Settings not found'));
+
+      final response = await supabase.from('settings').select('tax, currency_id').eq('id', settingsId).single();
+
+      if (response['tax'] == null) return Left(GeneralFailure(message: 'Beim Laden der Steuer ist ein Fehler aufgetreten.'));
+      if (response['currency_id'] == null) return Left(GeneralFailure(message: 'Beim Laden der Währung ist ein Fehler aufgetreten.'));
+
+      final fosCurrency = await getCurrencyById(response['currency_id']);
+      if (fosCurrency.isLeft()) return Left(fosCurrency.getLeft());
+
+      return Right((tax: response['tax'].toDouble(), currency: fosCurrency.getRight()));
+    } on PostgrestException catch (e) {
+      logger.e(e);
+      return Left(GeneralFailure(message: 'Beim Laden der Steuer ist ein Fehler aufgetreten. Error: $e'));
+    } catch (e) {
+      logger.e(e);
+      return Left(GeneralFailure(message: 'Beim Laden der Steuer ist ein Fehler aufgetreten. Error: $e'));
     }
   }
 
