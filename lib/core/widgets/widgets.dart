@@ -11,5 +11,6 @@ export 'my_fields/my_fields.dart';
 export 'my_filled_loading_container.dart';
 export 'my_form_field_container.dart';
 export 'my_loading_indicator.dart';
-export 'my_photo_page.dart';
+export 'my_photo_screen.dart';
+export 'my_reorderable_list_view.dart';
 export 'pages_pagination_bar.dart';

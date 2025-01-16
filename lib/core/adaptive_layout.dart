@@ -32,10 +32,7 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> with AutomaticKeepAlive
 
     if (!widget.showDrawer) {
       return Scaffold(
-        appBar: AppBar(
-          title: widget.title != null ? Text(widget.title!) : null,
-          actions: widget.actions,
-        ),
+        appBar: AppBar(title: widget.title != null ? Text(widget.title!) : null, actions: widget.actions),
         body: widget.child,
       );
     }
@@ -44,16 +41,10 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> with AutomaticKeepAlive
       return Scaffold(
         body: Row(
           children: [
-            const SizedBox(
-              width: 280,
-              child: AppDrawer(isPersistent: true),
-            ),
+            const SizedBox(width: 280, child: AppDrawer(isPersistent: true)),
             Expanded(
               child: Scaffold(
-                appBar: AppBar(
-                  title: widget.title != null ? Text(widget.title!) : null,
-                  actions: widget.actions,
-                ),
+                appBar: AppBar(title: widget.title != null ? Text(widget.title!) : null, actions: widget.actions),
                 body: widget.child,
               ),
             ),
@@ -64,10 +55,7 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> with AutomaticKeepAlive
 
     return Scaffold(
       drawer: const AppDrawer(isPersistent: false),
-      appBar: AppBar(
-        title: widget.title != null ? Text(widget.title!) : null,
-        actions: widget.actions,
-      ),
+      appBar: AppBar(title: widget.title != null ? Text(widget.title!) : null, actions: widget.actions),
       body: widget.child,
     );
   }

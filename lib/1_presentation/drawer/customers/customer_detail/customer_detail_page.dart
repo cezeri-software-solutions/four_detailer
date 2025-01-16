@@ -40,31 +40,18 @@ class _CustomerDetailContent extends StatelessWidget {
         length: 2,
         child: Column(
           children: [
-            const TabBar(
+            TabBar(
               tabs: [
-                Tab(text: 'Kundendaten'),
-                Tab(text: 'Kundenfahrzeuge'),
+                Tab(text: context.l10n.customer_detail_customerData),
+                Tab(text: context.l10n.customer_detail_vehicles),
               ],
             ),
             Expanded(
               child: TabBarView(
                 children: [
+                  SingleChildScrollView(child: EditCustomerData(customerDetailBloc: customerDetailBloc, customer: state.customer!)),
                   SingleChildScrollView(
-                    child: EditCustomerData(
-                      customerDetailBloc: customerDetailBloc,
-                      customer: state.customer!,
-                      isMobile: isMobile,
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    child: CustomerDetailVehicles(
-                      customerDetailBloc: customerDetailBloc,
-                      vehicles: state.customer!.vehicles ?? [],
-                      vehicleToCreateOrEdit: state.vehicle,
-                      vehicleIndexToEdit: state.vehicleIndex,
-                      showAddEditVehicleContainer: state.showAddEditVehicleContainer,
-                      isMobile: isMobile,
-                    ),
+                    child: CustomerDetailVehicles(customerDetailBloc: customerDetailBloc, vehicles: state.customer!.vehicles ?? []),
                   ),
                 ],
               ),
@@ -76,17 +63,8 @@ class _CustomerDetailContent extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(child: EditCustomerData(customerDetailBloc: customerDetailBloc, customer: state.customer!, isMobile: isMobile)),
-        Expanded(
-          child: CustomerDetailVehicles(
-            customerDetailBloc: customerDetailBloc,
-            vehicles: state.customer!.vehicles ?? [],
-            vehicleToCreateOrEdit: state.vehicle,
-            vehicleIndexToEdit: state.vehicleIndex,
-            showAddEditVehicleContainer: state.showAddEditVehicleContainer,
-            isMobile: isMobile,
-          ),
-        ),
+        Expanded(child: EditCustomerData(customerDetailBloc: customerDetailBloc, customer: state.customer!)),
+        Expanded(child: CustomerDetailVehicles(customerDetailBloc: customerDetailBloc, vehicles: state.customer!.vehicles ?? [])),
       ],
     );
   }

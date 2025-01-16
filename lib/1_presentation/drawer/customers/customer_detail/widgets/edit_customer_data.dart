@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
+import '/2_application/customer_detail/customer_detail_bloc.dart';
+import '/3_domain/models/models.dart';
+import '/constants.dart';
 import '/core/core.dart';
-import '../../../../../2_application/customer_detail/customer_detail_bloc.dart';
-import '../../../../../3_domain/models/models.dart';
-import '../../../../../constants.dart';
 
 class EditCustomerData extends StatelessWidget {
   final CustomerDetailBloc customerDetailBloc;
   final Customer customer;
-  final bool isMobile;
 
-  const EditCustomerData({super.key, required this.customerDetailBloc, required this.customer, required this.isMobile});
+  const EditCustomerData({super.key, required this.customerDetailBloc, required this.customer});
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = context.breakpoint.smallerOrEqualTo(MOBILE);
     final padding = isMobile ? const EdgeInsets.only(left: 12, right: 12, top: 12) : const EdgeInsets.only(left: 24, right: 12, top: 24);
 
     return Padding(

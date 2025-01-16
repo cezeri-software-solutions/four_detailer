@@ -14,6 +14,7 @@
   "passwordValid": "Passwort ist mindestens 8 Zeichen lang",
   "save": "Speichern",
   "edit": "Bearbeiten",
+  "title": "Titel",
   "other": "Sonstiges",
   "gender": "Geschlecht",
   "gender_male": "Herr",
@@ -36,6 +37,8 @@
   "taxNumber": "Steuernummer",
   "tax_abbreviated": "MwSt.",
   "mandatory": "Pflichtfeld",
+  "days": "Tage",
+  "description": "Beschreibung",
   "error_on_load_countries": "Beim Laden der Länder ist ein Fehler aufgetreten.",
   "my_image_source_camera": "Kamera",
   "my_image_source_gallery": "Galerie",
@@ -255,6 +258,102 @@
   "branch_detail_commercialRegister": "Handelsregister",
   "branch_detail_address": "Adresse",
   "branch_detail_validationMessage": "Filialname und E-Mail sind Pflichtfelder",
+  "services_overview_delete_services_success": "Dienstleistung/en erfolgreich gelöscht",
+  "service_smartItemType": "{type, select, vehicleSize{Fahrzeuggröße} contaminationLevel{Verschmutzungsgrad} other{Fahrzeuggröße}}",
+  "@service_smartItemType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "services_overview_delete_services_title": "Bist du sicher, dass du die Dienstleistung \"{serviceName}\" löschen willst?",
+  "@services_overview_delete_services_title": {
+    "placeholders": {
+      "serviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "services_overview_title": "Dienstleistungen",
+  "services_overview_emptyTitle": "Keine Dienstleistungen gefunden",
+  "service_detail_title": "Neue Dienstleistung",
+  "service_detail_serviceData": "Allgemein",
+  "service_detail_articleNumber": "Artikelnummer",
+  "service_detail_serviceName": "Name der Dienstleistung",
+  "service_detail_priceNet": "Preis Netto",
+  "service_detail_priceGross": "Preis Brutto",
+  "service_detail_shortDescription": "Kurzbeschreibung",
+  "service_detail_description": "Beschreibung",
+  "service_detail_serviceSmartItems": "{type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} todo{Todo`s} other{Fahrzeuggrößen}}",
+  "@service_detail_serviceSmartItems": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_addServiceSmartItem": "{type, select, vehicleSize{Fahrzeuggröße hinzufügen} contaminationLevel{Verschmutzungsgrad hinzufügen} other{Fahrzeuggröße hinzufügen}}",
+  "@service_detail_addServiceSmartItem": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_ServiceSmartItemInfoText": "Lege {type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} other{Fahrzeuggrößen}} fest, die für diese Dienstleistung relevant sind.\nDiese kannst du anschließend beim Erstellen von Aufträgen oder Rechnungen zu diesem Paket auswählen.",
+  "@service_detail_ServiceSmartItemInfoText": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_ServiceTodosInfoText": "Lege Todo`s fest, die für diese Dienstleistung relevant sind.\nDiese helfen dir bzw. deinem Mitarbeiter bei der Abarbeitung der Dienstleistung.",
+  "service_detail_editServiceSmartItem": "{type, select, vehicleSize{Fahrzeuggröße bearbeiten} contaminationLevel{Verschmutzungsgrad bearbeiten} other{Fahrzeuggröße bearbeiten}}",
+  "@service_detail_editServiceSmartItem": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_editServiceSmartItemValidationText": "{type, select, vehicleSize{Fahrzeuggröße} contaminationLevel{Verschmutzungsgrad} other{Fahrzeuggröße}}",
+  "@service_detail_editServiceSmartItemValidationText": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_customizeServiceSmartItems": "{type, select, vehicleSize{Fahrzeuggrößen} contaminationLevel{Verschmutzungsgrade} todo{Todo`s} other{Todo`s}} anpassen",
+  "@service_detail_customizeServiceSmartItems": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_deleteText": "Bist du sicher, dass du {type, select, vehicleSize{die Fahrzeuggröße} contaminationLevel{den Verschmutzungsgrad} todo{die Todo} other{die Todo}} löschen willst?",
+  "@service_detail_deleteText": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "service_detail_category": "Kategorie",
+  "service_detail_selectCategory": "Kategorie auswählen",
+  "service_detail_selectCategoryLoading": "Kategorien werden geladen...",
+  "service_detail_category_notSelected": "Keine Kategorie ausgewählt\nWenn du eine Kategorie auswählst, kannst du diese Dienstleistung in der Übersicht nach Kategorie filtern und alle Dienstleistungen werden übersichtlich gruppiert.\nAußerdem erleichtert dies die Auswahl der Dienstleistung bei der Erstellung von Aufträgen und Rechnungen.",
+  "service_detail_newServiceTodoTitle": "Neue Todo",
+  "service_detail_editServiceTodo": "Todo bearbeiten",
+  "service_detail_loadTemplateItems": "Vorlagen werden geladen...",
+  "service_detail_additionalDuration": "Zusätzliche Dauer",
+  "service_detail_additionalPrice": "Aufpreis",
+  "service_detail_additionalMaterialCosts": "Zusätzliche Materialkosten",
+  "service_detail_loadFromTemplate": "Aus Vorlage laden",
+  "service_detail_selectTemplate": "Vorlage auswählen",
   "settings_title": "Einstellungen",
   "settings_basic": "Grundeinstellungen",
   "settings_smallBusiness": "Kleinunternehmer",

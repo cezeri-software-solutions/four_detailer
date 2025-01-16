@@ -149,7 +149,7 @@ class TemplateServiceItem extends Equatable {
 }
 
 extension ConvertTemplateServiceTypeStringToEnum on String {
-  TemplateServiceType toEnum() {
+  TemplateServiceType toEnumTST() {
     return switch (this) {
       'vehicleSize' => TemplateServiceType.vehicleSize,
       'contaminationLevel' => TemplateServiceType.contaminationLevel,

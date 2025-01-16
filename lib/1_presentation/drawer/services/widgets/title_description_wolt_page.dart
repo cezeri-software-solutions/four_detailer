@@ -18,10 +18,7 @@ WoltModalSheetPage getTitleDescriptionWoltPage({
     hasTopBarLayer: true,
     leadingNavBarWidget: Padding(
       padding: const EdgeInsets.only(left: 16, top: 20),
-      child: Text(
-        title,
-        style: context.textTheme.titleLarge,
-      ),
+      child: Text(title, style: context.textTheme.titleLarge),
     ),
     isTopBarLayerAlwaysVisible: true,
     child: Padding(

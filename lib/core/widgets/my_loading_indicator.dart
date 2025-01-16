@@ -2,6 +2,23 @@ import 'package:flutter/material.dart';
 
 import '/core/core.dart';
 
+class MyLoadingDialog extends StatelessWidget {
+  const MyLoadingDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 160,
+      width: 220,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: const Center(child: MyLoadingIndicator()),
+    );
+  }
+}
+
 class MyLoadingIndicator extends StatefulWidget {
   const MyLoadingIndicator({super.key});
 

@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
+import '/2_application/customer_detail/customer_detail_bloc.dart';
+import '/3_domain/models/models.dart';
+import '/constants.dart';
 import '/core/core.dart';
-import '../../../../../2_application/customer_detail/customer_detail_bloc.dart';
-import '../../../../../3_domain/models/models.dart';
-import '../../../../../constants.dart';
 import 'widgets.dart';
 
 class CustomerDetailVehicles extends StatelessWidget {
   final CustomerDetailBloc customerDetailBloc;
   final List<Vehicle> vehicles;
-  final Vehicle? vehicleToCreateOrEdit;
-  final int? vehicleIndexToEdit;
-  final bool showAddEditVehicleContainer;
-  final bool isMobile;
 
   const CustomerDetailVehicles({
     super.key,
     required this.customerDetailBloc,
     required this.vehicles,
-    required this.vehicleToCreateOrEdit,
-    required this.vehicleIndexToEdit,
-    required this.showAddEditVehicleContainer,
-    required this.isMobile,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = context.breakpoint.smallerOrEqualTo(MOBILE);
     final padding = isMobile ? const EdgeInsets.only(left: 12, right: 12) : const EdgeInsets.only(left: 12, right: 24, top: 12);
     final notDeletedVehicles = vehicles.where((e) => !e.isDeleted).toList();
 
@@ -41,32 +35,18 @@ class CustomerDetailVehicles extends StatelessWidget {
             children: [
               Text(context.l10n.customer_detail_vehicles, style: context.textTheme.titleLarge),
               IconButton(
-                onPressed: () => _showAddVehicleDialog(context, customerDetailBloc, isMobile),
+                onPressed: () => _showAddVehicleDialog(context, customerDetailBloc),
                 icon: Icon(Icons.add_box, color: context.customColors.success),
               ),
             ],
           ),
           Gaps.h24,
           if (isMobile)
-            _CustomerDetailVehiclesContent(
-              customerDetailBloc: customerDetailBloc,
-              vehicles: notDeletedVehicles,
-              vehicleToCreateOrEdit: vehicleToCreateOrEdit,
-              vehicleIndexToEdit: vehicleIndexToEdit,
-              showAddEditVehicleContainer: showAddEditVehicleContainer,
-              isMobile: isMobile,
-            )
+            _CustomerDetailVehiclesContent(customerDetailBloc: customerDetailBloc, vehicles: notDeletedVehicles)
           else
             Expanded(
               child: SingleChildScrollView(
-                child: _CustomerDetailVehiclesContent(
-                  customerDetailBloc: customerDetailBloc,
-                  vehicles: notDeletedVehicles,
-                  vehicleToCreateOrEdit: vehicleToCreateOrEdit,
-                  vehicleIndexToEdit: vehicleIndexToEdit,
-                  showAddEditVehicleContainer: showAddEditVehicleContainer,
-                  isMobile: isMobile,
-                ),
+                child: _CustomerDetailVehiclesContent(customerDetailBloc: customerDetailBloc, vehicles: notDeletedVehicles),
               ),
             ),
         ],
@@ -78,19 +58,8 @@ class CustomerDetailVehicles extends StatelessWidget {
 class _CustomerDetailVehiclesContent extends StatelessWidget {
   final CustomerDetailBloc customerDetailBloc;
   final List<Vehicle> vehicles;
-  final Vehicle? vehicleToCreateOrEdit;
-  final int? vehicleIndexToEdit;
-  final bool showAddEditVehicleContainer;
-  final bool isMobile;
 
-  const _CustomerDetailVehiclesContent({
-    required this.customerDetailBloc,
-    required this.vehicles,
-    required this.vehicleToCreateOrEdit,
-    required this.vehicleIndexToEdit,
-    required this.showAddEditVehicleContainer,
-    required this.isMobile,
-  });
+  const _CustomerDetailVehiclesContent({required this.customerDetailBloc, required this.vehicles});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +71,7 @@ class _CustomerDetailVehiclesContent extends StatelessWidget {
         itemCount: vehicles.length,
         separatorBuilder: (context, index) => Gaps.h8,
         itemBuilder: (context, index) {
-          return _CustomerVehicleItem(customerDetailBloc: customerDetailBloc, isMobile: isMobile, vehicle: vehicles[index], index: index);
+          return _CustomerVehicleItem(customerDetailBloc: customerDetailBloc, vehicle: vehicles[index], index: index);
         },
       ),
     );
@@ -113,9 +82,8 @@ class _CustomerVehicleItem extends StatefulWidget {
   final CustomerDetailBloc customerDetailBloc;
   final Vehicle vehicle;
   final int index;
-  final bool isMobile;
 
-  const _CustomerVehicleItem({required this.customerDetailBloc, required this.isMobile, required this.vehicle, required this.index});
+  const _CustomerVehicleItem({required this.customerDetailBloc, required this.vehicle, required this.index});
 
   @override
   State<_CustomerVehicleItem> createState() => _CustomerVehicleItemState();
@@ -128,9 +96,7 @@ class _CustomerVehicleItemState extends State<_CustomerVehicleItem> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
           InkWell(
@@ -146,8 +112,10 @@ class _CustomerVehicleItemState extends State<_CustomerVehicleItem> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${widget.vehicle.brand} ${widget.vehicle.model} ${widget.vehicle.modelVariant}',
-                            style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          '${widget.vehicle.brand} ${widget.vehicle.model} ${widget.vehicle.modelVariant}',
+                          style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                        ),
                         Gaps.h4,
                         Row(
                           children: [
@@ -180,12 +148,7 @@ class _CustomerVehicleItemState extends State<_CustomerVehicleItem> {
               child: AddEditVehicle(
                 vehicle: widget.vehicle,
                 onDeletePressed: (_) {
-                  showMyDialogDeleteWolt(
-                    context: context,
-                    onConfirm: () {
-                      widget.customerDetailBloc.add(RemoveVehicleEvent(index: widget.index));
-                    },
-                  );
+                  showMyDialogDeleteWolt(context: context, onConfirm: () => widget.customerDetailBloc.add(RemoveVehicleEvent(index: widget.index)));
                 },
                 onUpdatePressed: (vh) {
                   setState(() => _isExpanded = false);
@@ -200,7 +163,8 @@ class _CustomerVehicleItemState extends State<_CustomerVehicleItem> {
   }
 }
 
-void _showAddVehicleDialog(BuildContext context, CustomerDetailBloc customerDetailBloc, bool isMobile) {
+void _showAddVehicleDialog(BuildContext context, CustomerDetailBloc customerDetailBloc) {
+  final isMobile = context.breakpoint.smallerOrEqualTo(MOBILE);
   Vehicle newVehicle = Vehicle.empty();
 
   WoltModalSheet.show<void>(
