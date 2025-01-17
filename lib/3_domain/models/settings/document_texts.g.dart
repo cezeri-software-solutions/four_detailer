@@ -6,8 +6,7 @@ part of 'document_texts.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DocumentTexts _$DocumentTextsFromJson(Map<String, dynamic> json) =>
-    DocumentTexts(
+DocumentTexts _$DocumentTextsFromJson(Map<String, dynamic> json) => DocumentTexts(
       id: json['id'] as String,
       offerDocumentText: json['offer_document_text'] as String,
       appointmentDocumentText: json['appointment_document_text'] as String,
@@ -15,8 +14,7 @@ DocumentTexts _$DocumentTextsFromJson(Map<String, dynamic> json) =>
       creditDocumentText: json['credit_document_text'] as String,
     );
 
-Map<String, dynamic> _$DocumentTextsToJson(DocumentTexts instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DocumentTextsToJson(DocumentTexts instance) => <String, dynamic>{
       'id': instance.id,
       'offer_document_text': instance.offerDocumentText,
       'appointment_document_text': instance.appointmentDocumentText,

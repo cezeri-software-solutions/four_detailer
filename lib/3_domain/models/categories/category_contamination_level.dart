@@ -27,8 +27,7 @@ class CategoryContaminationLevel extends Equatable {
     required this.updatedAt,
   });
 
-  factory CategoryContaminationLevel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryContaminationLevelFromJson(json);
+  factory CategoryContaminationLevel.fromJson(Map<String, dynamic> json) => _$CategoryContaminationLevelFromJson(json);
   Map<String, dynamic> toJson() => _$CategoryContaminationLevelToJson(this);
 
   factory CategoryContaminationLevel.empty() {
@@ -68,4 +67,4 @@ class CategoryContaminationLevel extends Equatable {
 
   @override
   bool get stringify => true;
-} 
+}

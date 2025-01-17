@@ -6,8 +6,7 @@ part of 'template_service.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TemplateService _$TemplateServiceFromJson(Map<String, dynamic> json) =>
-    TemplateService(
+TemplateService _$TemplateServiceFromJson(Map<String, dynamic> json) => TemplateService(
       id: json['id'] as String,
       ownerId: json['owner_id'] as String,
       branchId: json['branch_id'] as String,
@@ -15,15 +14,12 @@ TemplateService _$TemplateServiceFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       position: (json['position'] as num).toInt(),
       type: $enumDecode(_$TemplateServiceTypeEnumMap, json['type']),
-      items: (json['items'] as List<dynamic>?)
-          ?.map((e) => TemplateServiceItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      items: (json['items'] as List<dynamic>?)?.map((e) => TemplateServiceItem.fromJson(e as Map<String, dynamic>)).toList(),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$TemplateServiceToJson(TemplateService instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TemplateServiceToJson(TemplateService instance) => <String, dynamic>{
       'id': instance.id,
       'owner_id': instance.ownerId,
       'branch_id': instance.branchId,
@@ -40,8 +36,7 @@ const _$TemplateServiceTypeEnumMap = {
   TemplateServiceType.todo: 'todo',
 };
 
-TemplateServiceItem _$TemplateServiceItemFromJson(Map<String, dynamic> json) =>
-    TemplateServiceItem(
+TemplateServiceItem _$TemplateServiceItemFromJson(Map<String, dynamic> json) => TemplateServiceItem(
       id: json['id'] as String,
       templateServiceId: json['template_service_id'] as String,
       name: json['name'] as String,
@@ -49,9 +44,7 @@ TemplateServiceItem _$TemplateServiceItemFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$TemplateServiceItemToJson(
-        TemplateServiceItem instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TemplateServiceItemToJson(TemplateServiceItem instance) => <String, dynamic>{
       'id': instance.id,
       'template_service_id': instance.templateServiceId,
       'name': instance.name,

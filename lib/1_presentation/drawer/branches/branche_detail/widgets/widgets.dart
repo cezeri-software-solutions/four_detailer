@@ -1,1 +1,1 @@
-export 'branch_detail_edit.dart'; 
+export 'branch_detail_edit.dart';

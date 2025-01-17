@@ -18,8 +18,7 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) => Customer(
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
       tel1: json['tel_one'] as String,
       tel2: json['tel_two'] as String,
-      customerStatus:
-          $enumDecode(_$CustomerStatusEnumMap, json['customer_status']),
+      customerStatus: $enumDecode(_$CustomerStatusEnumMap, json['customer_status']),
       customerType: $enumDecode(_$CustomerTypeEnumMap, json['customer_type']),
       companyName: json['company_name'] as String,
       taxNumber: json['tax_number'] as String,
@@ -27,9 +26,7 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) => Customer(
       isDeleted: json['is_deleted'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
-      vehicles: (json['vehicles'] as List<dynamic>?)
-          ?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      vehicles: (json['vehicles'] as List<dynamic>?)?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
 Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{

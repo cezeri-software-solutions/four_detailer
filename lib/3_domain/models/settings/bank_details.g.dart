@@ -15,8 +15,7 @@ BankDetails _$BankDetailsFromJson(Map<String, dynamic> json) => BankDetails(
       paypalEmail: json['paypal_email'] as String,
     );
 
-Map<String, dynamic> _$BankDetailsToJson(BankDetails instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BankDetailsToJson(BankDetails instance) => <String, dynamic>{
       'id': instance.id,
       'bank_name': instance.bankName,
       'account_holder': instance.accountHolder,

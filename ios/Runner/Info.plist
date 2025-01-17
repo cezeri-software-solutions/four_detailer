@@ -47,6 +47,16 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<!-- WebView-Berechtigungen -->
+		<key>io.flutter.embedded_views_preview</key>
+		<true/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+			<key>NSAllowsArbitraryLoadsInWebContent</key>
+			<true/>
+		</dict>
 		<!-- Erforderlich für den Zugriff auf die Fotobibliothek -->
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Wir benötigen Zugriff auf Ihre Fotobibliothek, um Bilder hochladen zu können.</string>

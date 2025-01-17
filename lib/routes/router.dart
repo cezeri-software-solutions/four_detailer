@@ -41,6 +41,7 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: CustomersOverviewRoute.page, path: 'customers-overview'),
             AutoRoute(page: CustomerDetailRoute.page, path: 'customer-detail/:customerId'),
             AutoRoute(page: SettingsRoute.page, path: 'settings'),
+            AutoRoute(page: PurchaceRoute.page, path: 'purchace'),
             RedirectRoute(path: '*', redirectTo: 'home'),
           ],
         ),

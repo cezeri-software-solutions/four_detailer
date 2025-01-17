@@ -9,8 +9,7 @@ part of 'conditioner.dart';
 Conditioner _$ConditionerFromJson(Map<String, dynamic> json) => Conditioner(
       id: json['id'] as String,
       ownerId: json['owner_id'] as String,
-      conditionerPayment: ConditionerPayment.fromJson(
-          json['conditioner_payment'] as Map<String, dynamic>),
+      conditionerPayment: ConditionerPayment.fromJson(json['conditioner_payment'] as Map<String, dynamic>),
       imageUrl: json['image_url'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       firstName: json['first_name'] as String,
@@ -19,16 +18,14 @@ Conditioner _$ConditionerFromJson(Map<String, dynamic> json) => Conditioner(
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
       tel1: json['tel_one'] as String,
       tel2: json['tel_two'] as String,
-      conditionerTyp:
-          $enumDecode(_$ConditionerTypeEnumMap, json['conditioner_type']),
+      conditionerTyp: $enumDecode(_$ConditionerTypeEnumMap, json['conditioner_type']),
       employeeType: $enumDecode(_$EmployeeTypeEnumMap, json['employee_type']),
       isActive: json['is_active'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$ConditionerToJson(Conditioner instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ConditionerToJson(Conditioner instance) => <String, dynamic>{
       'id': instance.id,
       'owner_id': instance.ownerId,
       'conditioner_payment': instance.conditionerPayment.toJson(),

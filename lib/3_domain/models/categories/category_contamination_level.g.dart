@@ -6,9 +6,7 @@ part of 'category_contamination_level.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CategoryContaminationLevel _$CategoryContaminationLevelFromJson(
-        Map<String, dynamic> json) =>
-    CategoryContaminationLevel(
+CategoryContaminationLevel _$CategoryContaminationLevelFromJson(Map<String, dynamic> json) => CategoryContaminationLevel(
       id: json['id'] as String,
       categoryId: json['category_id'] as String,
       name: json['name'] as String,
@@ -18,9 +16,7 @@ CategoryContaminationLevel _$CategoryContaminationLevelFromJson(
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$CategoryContaminationLevelToJson(
-        CategoryContaminationLevel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CategoryContaminationLevelToJson(CategoryContaminationLevel instance) => <String, dynamic>{
       'id': instance.id,
       'category_id': instance.categoryId,
       'name': instance.name,

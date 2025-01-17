@@ -6,8 +6,7 @@ part of 'document_praefixes.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DocumentPraefixes _$DocumentPraefixesFromJson(Map<String, dynamic> json) =>
-    DocumentPraefixes(
+DocumentPraefixes _$DocumentPraefixesFromJson(Map<String, dynamic> json) => DocumentPraefixes(
       id: json['id'] as String,
       offerPraefix: json['offer_praefix'] as String,
       appointmentPraefix: json['appointment_praefix'] as String,
@@ -16,8 +15,7 @@ DocumentPraefixes _$DocumentPraefixesFromJson(Map<String, dynamic> json) =>
       incomingInvoicePraefix: json['incoming_invoice_praefix'] as String,
     );
 
-Map<String, dynamic> _$DocumentPraefixesToJson(DocumentPraefixes instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DocumentPraefixesToJson(DocumentPraefixes instance) => <String, dynamic>{
       'id': instance.id,
       'offer_praefix': instance.offerPraefix,
       'appointment_praefix': instance.appointmentPraefix,

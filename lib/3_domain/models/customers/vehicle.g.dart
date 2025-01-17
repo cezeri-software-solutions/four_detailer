@@ -14,9 +14,7 @@ Vehicle _$VehicleFromJson(Map<String, dynamic> json) => Vehicle(
       model: json['model'] as String,
       modelVariant: json['model_variant'] as String,
       bodyType: $enumDecode(_$BodyTypeEnumMap, json['body_type']),
-      firstRegistration: json['first_registration'] == null
-          ? null
-          : DateTime.parse(json['first_registration'] as String),
+      firstRegistration: json['first_registration'] == null ? null : DateTime.parse(json['first_registration'] as String),
       mileage: (json['mileage'] as num).toInt(),
       fuelType: $enumDecode(_$FuelTypeEnumMap, json['fuel_type']),
       powerHP: (json['power_hp'] as num).toInt(),

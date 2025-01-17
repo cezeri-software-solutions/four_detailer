@@ -55,12 +55,18 @@ class ServicesOverviewBloc extends Bloc<ServicesOverviewEvent, ServicesOverviewS
     );
     fos.fold(
       (failure) => emit(state.copyWith(failure: failure)),
-      (services) => emit(state.copyWith(
-        listOfServices: services.services,
-        totalQuantity: event.calcCount ? services.totalCount : state.totalQuantity,
-        currentPage: event.currentPage,
-        resetFailure: true,
-      )),
+      (services) {
+        final Set<Category> uniqueCategories =
+            services.services.where((service) => service.category != null).map((service) => service.category!).toSet();
+
+        emit(state.copyWith(
+          listOfServices: services.services,
+          listOfCategories: uniqueCategories.toList(),
+          totalQuantity: event.calcCount ? services.totalCount : state.totalQuantity,
+          currentPage: event.currentPage,
+          resetFailure: true,
+        ));
+      },
     );
 
     emit(state.copyWith(isLoadingServicesOnObserve: false, fosServicesOnObserveOption: optionOf(fos)));

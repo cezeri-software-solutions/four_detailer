@@ -9,6 +9,7 @@ import '2_application/conditioner_detail/conditioner_detail_bloc.dart';
 import '2_application/conditioners_overview/conditioners_overview_bloc.dart';
 import '2_application/customer_detail/customer_detail_bloc.dart';
 import '2_application/customers_overview/customers_overview_bloc.dart';
+import '2_application/purchace/purchace_bloc.dart';
 import '2_application/service_detail/service_detail_bloc.dart';
 import '2_application/services_overview/services_overview_bloc.dart';
 import '2_application/settings/settings_bloc.dart';
@@ -50,6 +51,7 @@ Future<void> init() async {
   sl.registerFactory(() => TemplateServicesBloc(templateServiceRepository: sl()));
   sl.registerFactory(() => BranchDetailBloc(branchRepository: sl()));
   sl.registerFactory(() => SettingsBloc(settingsRepository: sl(), databaseRepository: sl()));
+  sl.registerLazySingleton(() => PurchaceBloc());
   //* ##################################################################################################
   //* ### Repositories #################################################################################
   //* ##################################################################################################
