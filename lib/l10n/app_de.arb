@@ -247,6 +247,7 @@
       }
     }
   },
+  "services_overview_noCategoryTitle": "Sonstige Dienstleistungen",
   "branches_overview_title": "Filialen",
   "branch_detail_updateSuccess": "Filiale erfolgreich aktualisiert",
   "branch_detail_branchName": "Filialname",

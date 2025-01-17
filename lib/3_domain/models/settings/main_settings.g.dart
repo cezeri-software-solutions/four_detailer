@@ -8,14 +8,10 @@ part of 'main_settings.dart';
 
 MainSettings _$MainSettingsFromJson(Map<String, dynamic> json) => MainSettings(
       id: json['id'] as String,
-      documentPraefixes: DocumentPraefixes.fromJson(
-          json['document_praefixes'] as Map<String, dynamic>),
-      documentTexts: DocumentTexts.fromJson(
-          json['document_texts'] as Map<String, dynamic>),
-      numberCounters: NumberCounters.fromJson(
-          json['number_counters'] as Map<String, dynamic>),
-      bankDetails:
-          BankDetails.fromJson(json['bank_details'] as Map<String, dynamic>),
+      documentPraefixes: DocumentPraefixes.fromJson(json['document_praefixes'] as Map<String, dynamic>),
+      documentTexts: DocumentTexts.fromJson(json['document_texts'] as Map<String, dynamic>),
+      numberCounters: NumberCounters.fromJson(json['number_counters'] as Map<String, dynamic>),
+      bankDetails: BankDetails.fromJson(json['bank_details'] as Map<String, dynamic>),
       currency: Currency.fromJson(json['currency'] as Map<String, dynamic>),
       isSmallBusiness: json['is_small_business'] as bool,
       tax: (json['tax'] as num).toDouble(),
@@ -24,8 +20,7 @@ MainSettings _$MainSettingsFromJson(Map<String, dynamic> json) => MainSettings(
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$MainSettingsToJson(MainSettings instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MainSettingsToJson(MainSettings instance) => <String, dynamic>{
       'id': instance.id,
       'document_praefixes': instance.documentPraefixes.toJson(),
       'document_texts': instance.documentTexts.toJson(),

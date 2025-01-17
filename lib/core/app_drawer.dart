@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:redacted/redacted.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '/core/core.dart';
 import '../3_domain/models/models.dart';
@@ -189,11 +191,18 @@ class _AppDrawerContent extends StatelessWidget {
             ),
           ),
           ListTile(
-            selected: context.router.isRouteActive(PurchaceRoute.name),
+            selected: !kIsWeb && context.router.isRouteActive(PurchaceRoute.name),
             selectedTileColor: context.colorScheme.surfaceContainerHigh,
             leading: Image.asset('assets/ccf/ccf_logo.png', width: 24, height: 24),
             title: const Text('CCF-Autopflege'),
-            onTap: () => navigateToRoute(const PurchaceRoute()),
+            onTap: () async {
+              if (kIsWeb) {
+                final url = Uri.parse('https://ccf-autopflege.at');
+                await launchUrl(url, webOnlyWindowName: '_blank');
+              } else {
+                navigateToRoute(const PurchaceRoute());
+              }
+            },
           ),
           const Divider(height: 0),
           ListTile(

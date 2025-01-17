@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '/core/core.dart';
@@ -7,7 +5,6 @@ import '../../../../2_application/settings/settings_bloc.dart';
 import '../../../../3_domain/models/models.dart';
 import '../../../../constants.dart';
 import '../settings_page.dart';
-
 
 class DocumentPrefixesCard extends StatelessWidget {
   final MainSettings settings;

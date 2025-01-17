@@ -3,6 +3,7 @@ part of 'services_overview_bloc.dart';
 @immutable
 class ServicesOverviewState {
   final List<Service>? listOfServices;
+  final List<Category> listOfCategories;
   final AbstractFailure? failure;
   final bool isLoadingServicesOnObserve;
   final bool isLoadingServicesOnCreate;
@@ -21,6 +22,7 @@ class ServicesOverviewState {
 
   const ServicesOverviewState({
     required this.listOfServices,
+    required this.listOfCategories,
     required this.failure,
     required this.isLoadingServicesOnObserve,
     required this.isLoadingServicesOnCreate,
@@ -38,6 +40,7 @@ class ServicesOverviewState {
 
   factory ServicesOverviewState.initial() => ServicesOverviewState(
         listOfServices: null,
+        listOfCategories: const [],
         failure: null,
         isLoadingServicesOnObserve: true,
         isLoadingServicesOnCreate: false,
@@ -55,6 +58,7 @@ class ServicesOverviewState {
 
   ServicesOverviewState copyWith({
     List<Service>? listOfServices,
+    List<Category>? listOfCategories,
     bool? resetFailure,
     AbstractFailure? failure,
     bool? isLoadingServicesOnObserve,
@@ -72,6 +76,7 @@ class ServicesOverviewState {
   }) {
     return ServicesOverviewState(
       listOfServices: listOfServices ?? this.listOfServices,
+      listOfCategories: listOfCategories ?? this.listOfCategories,
       failure: resetFailure == true ? null : failure ?? this.failure,
       isLoadingServicesOnObserve: isLoadingServicesOnObserve ?? this.isLoadingServicesOnObserve,
       isLoadingServicesOnCreate: isLoadingServicesOnCreate ?? this.isLoadingServicesOnCreate,

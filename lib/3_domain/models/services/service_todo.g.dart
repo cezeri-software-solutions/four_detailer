@@ -17,8 +17,7 @@ ServiceTodo _$ServiceTodoFromJson(Map<String, dynamic> json) => ServiceTodo(
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$ServiceTodoToJson(ServiceTodo instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ServiceTodoToJson(ServiceTodo instance) => <String, dynamic>{
       'id': instance.id,
       'service_id': instance.serviceId,
       'name': instance.name,

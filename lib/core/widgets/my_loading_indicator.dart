@@ -11,7 +11,7 @@ class MyLoadingDialog extends StatelessWidget {
       height: 160,
       width: 220,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colorScheme.surfaceContainerHigh.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(10),
       ),
       child: const Center(child: MyLoadingIndicator()),

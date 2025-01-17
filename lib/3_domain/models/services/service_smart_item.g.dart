@@ -6,8 +6,7 @@ part of 'service_smart_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ServiceSmartItem _$ServiceSmartItemFromJson(Map<String, dynamic> json) =>
-    ServiceSmartItem(
+ServiceSmartItem _$ServiceSmartItemFromJson(Map<String, dynamic> json) => ServiceSmartItem(
       id: json['id'] as String,
       serviceId: json['service_id'] as String,
       name: json['name'] as String,
@@ -15,20 +14,16 @@ ServiceSmartItem _$ServiceSmartItemFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num).toInt(),
       additionalNetPrice: (json['additional_net_price'] as num).toDouble(),
       additionalGrossPrice: (json['additional_gross_price'] as num).toDouble(),
-      additionalDuration: const DurationConverter()
-          .fromJson(json['additional_duration'] as String),
-      additionalNetMaterialCosts:
-          (json['additional_net_material_costs'] as num).toDouble(),
-      additionalGrossMaterialCosts:
-          (json['additional_gross_material_costs'] as num).toDouble(),
+      additionalDuration: const DurationConverter().fromJson(json['additional_duration'] as String),
+      additionalNetMaterialCosts: (json['additional_net_material_costs'] as num).toDouble(),
+      additionalGrossMaterialCosts: (json['additional_gross_material_costs'] as num).toDouble(),
       isDeleted: json['is_deleted'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
       type: $enumDecode(_$ServiceSmartItemTypeEnumMap, json['type']),
     );
 
-Map<String, dynamic> _$ServiceSmartItemToJson(ServiceSmartItem instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ServiceSmartItemToJson(ServiceSmartItem instance) => <String, dynamic>{
       'id': instance.id,
       'service_id': instance.serviceId,
       'name': instance.name,
@@ -36,8 +31,7 @@ Map<String, dynamic> _$ServiceSmartItemToJson(ServiceSmartItem instance) =>
       'position': instance.position,
       'additional_net_price': instance.additionalNetPrice,
       'additional_gross_price': instance.additionalGrossPrice,
-      'additional_duration':
-          const DurationConverter().toJson(instance.additionalDuration),
+      'additional_duration': const DurationConverter().toJson(instance.additionalDuration),
       'additional_net_material_costs': instance.additionalNetMaterialCosts,
       'additional_gross_material_costs': instance.additionalGrossMaterialCosts,
       'is_deleted': instance.isDeleted,

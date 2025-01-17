@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 Future<bool> checkInternetConnection() async {
   if (kIsWeb) return true;
-  
+
   bool isConnected = false;
   try {
     final result = await InternetAddress.lookup('google.com');

@@ -11,9 +11,7 @@ Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
       position: (json['position'] as num).toInt(),
       ownerId: json['owner_id'] as String,
       branchId: json['branch_id'] as String,
-      category: json['category'] == null
-          ? null
-          : Category.fromJson(json['category'] as Map<String, dynamic>),
+      category: json['category'] == null ? null : Category.fromJson(json['category'] as Map<String, dynamic>),
       number: json['number'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -23,15 +21,10 @@ Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
       netPrice: (json['net_price'] as num).toDouble(),
       grossPrice: (json['gross_price'] as num).toDouble(),
       duration: const DurationConverter().fromJson(json['duration'] as String),
-      vehicleSizes: (json['vehicle_sizes'] as List<dynamic>?)
-          ?.map((e) => ServiceSmartItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      contaminationLevels: (json['contamination_levels'] as List<dynamic>?)
-          ?.map((e) => ServiceSmartItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      todos: (json['todos'] as List<dynamic>?)
-          ?.map((e) => ServiceTodo.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      vehicleSizes: (json['vehicle_sizes'] as List<dynamic>?)?.map((e) => ServiceSmartItem.fromJson(e as Map<String, dynamic>)).toList(),
+      contaminationLevels:
+          (json['contamination_levels'] as List<dynamic>?)?.map((e) => ServiceSmartItem.fromJson(e as Map<String, dynamic>)).toList(),
+      todos: (json['todos'] as List<dynamic>?)?.map((e) => ServiceTodo.fromJson(e as Map<String, dynamic>)).toList(),
       isDeleted: json['is_deleted'] as bool,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
@@ -53,8 +46,7 @@ Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
       'gross_price': instance.grossPrice,
       'duration': const DurationConverter().toJson(instance.duration),
       'vehicle_sizes': instance.vehicleSizes?.map((e) => e.toJson()).toList(),
-      'contamination_levels':
-          instance.contaminationLevels?.map((e) => e.toJson()).toList(),
+      'contamination_levels': instance.contaminationLevels?.map((e) => e.toJson()).toList(),
       'todos': instance.todos?.map((e) => e.toJson()).toList(),
       'is_deleted': instance.isDeleted,
     };

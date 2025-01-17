@@ -8,23 +8,17 @@ part of 'transaction.dart';
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       id: json['id'] as String,
-      transactionType:
-          $enumDecode(_$TransactionTypeEnumMap, json['transaction_type']),
+      transactionType: $enumDecode(_$TransactionTypeEnumMap, json['transaction_type']),
       cashRegisterId: json['cash_register_id'] as String,
-      cashRegister: json['cash_register'] == null
-          ? null
-          : CashRegister.fromJson(
-              json['cash_register'] as Map<String, dynamic>),
-      paymentMethod: PaymentMethod.fromJson(
-          json['payment_method'] as Map<String, dynamic>),
+      cashRegister: json['cash_register'] == null ? null : CashRegister.fromJson(json['cash_register'] as Map<String, dynamic>),
+      paymentMethod: PaymentMethod.fromJson(json['payment_method'] as Map<String, dynamic>),
       amount: (json['amount'] as num).toDouble(),
       description: json['description'] as String,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TransactionToJson(Transaction instance) => <String, dynamic>{
       'id': instance.id,
       'transaction_type': _$TransactionTypeEnumMap[instance.transactionType]!,
       'cash_register_id': instance.cashRegisterId,

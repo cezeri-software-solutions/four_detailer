@@ -27,8 +27,7 @@ class CategoryVehicleSize extends Equatable {
     required this.updatedAt,
   });
 
-  factory CategoryVehicleSize.fromJson(Map<String, dynamic> json) =>
-      _$CategoryVehicleSizeFromJson(json);
+  factory CategoryVehicleSize.fromJson(Map<String, dynamic> json) => _$CategoryVehicleSizeFromJson(json);
   Map<String, dynamic> toJson() => _$CategoryVehicleSizeToJson(this);
 
   factory CategoryVehicleSize.empty() {
@@ -68,4 +67,4 @@ class CategoryVehicleSize extends Equatable {
 
   @override
   bool get stringify => true;
-} 
+}

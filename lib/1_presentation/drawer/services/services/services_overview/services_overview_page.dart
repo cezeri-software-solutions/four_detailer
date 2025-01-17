@@ -44,16 +44,67 @@ class _ServicesOverviewContent extends StatelessWidget {
         child: ListView(
           children: [
             ListView.separated(
-              padding: EdgeInsets.all(context.breakpoint.isMobile ? 12 : 24),
+              padding: EdgeInsets.symmetric(vertical: context.breakpoint.isMobile ? 12 : 24),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: state.listOfServices!.length,
-              itemBuilder: (context, index) => _ServiceTile(servicesOverviewBloc: servicesOverviewBloc, service: state.listOfServices![index]),
+              itemCount: state.listOfCategories.length,
+              itemBuilder: (context, index) {
+                final category = state.listOfCategories[index];
+                final services = state.listOfServices!.where((e) => e.category?.id == category.id).toList();
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _CategoryTitleContainer(title: category.title),
+                    _ServicesListView(servicesOverviewBloc: servicesOverviewBloc, listOfServices: services),
+                  ],
+                );
+              },
               separatorBuilder: (context, index) => Gaps.h12,
+            ),
+            _CategoryTitleContainer(title: context.l10n.services_overview_noCategoryTitle),
+            _ServicesListView(
+              servicesOverviewBloc: servicesOverviewBloc,
+              listOfServices: state.listOfServices!.where((e) => e.category == null).toList(),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CategoryTitleContainer extends StatelessWidget {
+  final String title;
+
+  const _CategoryTitleContainer({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: context.breakpoint.isMobile ? 12 : 24, vertical: 4),
+      width: double.infinity,
+      color: context.colorScheme.surfaceContainerHighest,
+      child: Text(title, style: context.textTheme.titleMedium?.copyWith(color: context.colorScheme.onSurfaceVariant)),
+    );
+  }
+}
+
+class _ServicesListView extends StatelessWidget {
+  final ServicesOverviewBloc servicesOverviewBloc;
+  final List<Service> listOfServices;
+
+  const _ServicesListView({required this.servicesOverviewBloc, required this.listOfServices});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.all(context.breakpoint.isMobile ? 12 : 24),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: listOfServices.length,
+      itemBuilder: (context, index) => _ServiceTile(servicesOverviewBloc: servicesOverviewBloc, service: listOfServices[index]),
+      separatorBuilder: (context, index) => Gaps.h12,
     );
   }
 }
@@ -83,7 +134,19 @@ class _ServiceTile extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: Text(service.name),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(service.number, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(service.name),
+                ],
+              ),
+              Icon(Icons.chevron_right_rounded, color: context.colorScheme.onSurfaceVariant),
+            ],
+          ),
         ),
       ),
     );

@@ -16,4 +16,4 @@ class AuthGuard extends AutoRouteGuard {
       router.replaceAll([const SignInRoute()]);
     }
   }
-} 
+}

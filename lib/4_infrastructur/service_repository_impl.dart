@@ -82,11 +82,6 @@ class ServiceRepositoryImpl implements ServiceRepository {
         'p_items_per_page': itemsPerPage,
       });
 
-      if ((response['data'] as List<dynamic>).isNotEmpty) {
-        print('vehicle_sizes');
-        printJson((response['data'] as List<dynamic>).firstWhere((element) => element['id'] == 'eb8b88f7-be91-423d-a494-e71ee9eaf768'));
-      }
-
       final List<Service> services = (response['data'] as List<dynamic>).map((service) => Service.fromJson(service as Map<String, dynamic>)).toList();
       final int totalCount = response['total_count'];
 

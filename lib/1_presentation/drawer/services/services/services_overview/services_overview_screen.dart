@@ -7,7 +7,7 @@ import '/2_application/auth/auth_bloc.dart';
 import '/2_application/services_overview/services_overview_bloc.dart';
 import '/core/core.dart';
 import '/injection.dart';
-import '../../../../../routes/router.gr.dart';
+import '/routes/router.gr.dart';
 import 'services_overview_page.dart';
 
 @RoutePage()
